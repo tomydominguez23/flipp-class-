@@ -1,0 +1,13 @@
+concepto,valor,nota
+precio_compra,,Precio al que compras el auto
+transferencia,,Traspaso / notaría / gestiones
+comision,,Si compras/vendes con intermediario
+mecanica,,Mantención / reparaciones
+detailing,,Limpieza, pulido, etc.
+publicidad_ads,,Meta Ads / boosts / producción
+imprevistos,,Colchón recomendado
+costo_oportunidad,,Tiempo/stock: cuánto te cuesta tener la plata parada
+total_costos,,Suma de costos (sin incluir precio venta)
+precio_venta_estimado,,Precio salida realista (no el “ideal”)
+margen_bruto,,precio_venta_estimado - (precio_compra + total_costos)
+roi,,margen_bruto / (precio_compra + total_costos)

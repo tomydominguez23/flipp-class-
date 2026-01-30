@@ -1,0 +1,11 @@
+{
+  "name": "flip-class-root",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix flip-class run dev",
+    "build": "npm --prefix flip-class run build",
+    "lint": "npm --prefix flip-class run lint",
+    "preview": "npm --prefix flip-class run preview"
+  }
+}
+
