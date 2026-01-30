@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAuth } from '../auth/useAuth'
 import { addComment, addPost, getCommunity, likePost } from '../lib/community'
 import { onStorageChange } from '../lib/storage'
@@ -20,7 +20,8 @@ export function CommunityPage() {
 
   useEffect(() => onStorageChange(() => setVersion((v) => v + 1)), [])
 
-  const state = useMemo(() => getCommunity(), [version])
+  void version
+  const state = getCommunity()
 
   return (
     <div className="space-y-6">

@@ -8,7 +8,9 @@ export function useStorageValue<T>(key: string, fallback: T) {
     return onStorageChange(() => setVersion((v) => v + 1))
   }, [])
 
+  // Dependemos de `version` solo para recalcular en cambios de storage.
   return useMemo(() => {
+    void version
     const v = readLocal<T>(key)
     return (v ?? fallback) as T
   }, [key, fallback, version])

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { modules } from '../lib/courseData'
 import { getProgress } from '../lib/progress'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { onStorageChange } from '../lib/storage'
 import { ProgressBar } from '../components/ProgressBar'
 
@@ -16,12 +16,11 @@ export function CourseIndex() {
   const [version, setVersion] = useState(0)
   useEffect(() => onStorageChange(() => setVersion((v) => v + 1)), [])
 
-  const overall = useMemo(() => {
-    const totalLessons = modules.reduce((acc, m) => acc + m.lessons.length, 0)
-    const completed = Object.keys(getProgress().completadas).length
-    const pct = totalLessons ? Math.round((completed / totalLessons) * 100) : 0
-    return { totalLessons, completed, pct }
-  }, [version])
+  void version
+  const totalLessons = modules.reduce((acc, m) => acc + m.lessons.length, 0)
+  const completed = Object.keys(getProgress().completadas).length
+  const pct = totalLessons ? Math.round((completed / totalLessons) * 100) : 0
+  const overall = { totalLessons, completed, pct }
 
   return (
     <div className="space-y-6">

@@ -1,5 +1,5 @@
 import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useAuth } from '../auth/useAuth'
 import { register } from '../lib/auth'
 import type { PlanId } from '../lib/types'
@@ -12,13 +12,8 @@ export function RegisterPage() {
 
   const [nombre, setNombre] = useState('')
   const [email, setEmail] = useState('')
-  const [plan, setPlan] = useState<PlanId>('BASICO')
+  const [plan, setPlan] = useState<PlanId>(() => readLocal<PlanId>('fc_selected_plan') ?? 'BASICO')
   const [error, setError] = useState<string | null>(null)
-
-  useEffect(() => {
-    const selected = readLocal<PlanId>('fc_selected_plan')
-    if (selected) setPlan(selected)
-  }, [])
 
   if (isAuthenticated) return <Navigate to="/app" replace />
 

@@ -1,7 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { modules } from '../lib/courseData'
 import { isLessonCompleted, toggleLessonCompleted } from '../lib/progress'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { onStorageChange } from '../lib/storage'
 
 export function LessonPage() {
@@ -10,7 +10,8 @@ export function LessonPage() {
 
   useEffect(() => onStorageChange(() => setVersion((v) => v + 1)), [])
 
-  const model = useMemo(() => {
+  void version
+  const model = (() => {
     const mod = modules.find((m) => m.id === moduleId)
     const lesson = mod?.lessons.find((l) => l.id === lessonId)
     if (!mod || !lesson) return null
@@ -19,7 +20,7 @@ export function LessonPage() {
     const next = idx >= 0 && idx < mod.lessons.length - 1 ? mod.lessons[idx + 1] : null
     const done = isLessonCompleted(mod.id, lesson.id)
     return { mod, lesson, prev, next, done }
-  }, [moduleId, lessonId, version])
+  })()
 
   if (!model) {
     return (

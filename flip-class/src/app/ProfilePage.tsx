@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useAuth } from '../auth/useAuth'
 import { updateCurrentUser } from '../lib/auth'
 import type { PlanId } from '../lib/types'
-import { onStorageChange } from '../lib/storage'
+import type { User } from '../lib/types'
 
 const plans: Array<{ id: PlanId; name: string; desc: string }> = [
   { id: 'BASICO', name: 'Básico Online', desc: '100% online + comunidad + materiales.' },
@@ -12,18 +12,6 @@ const plans: Array<{ id: PlanId; name: string; desc: string }> = [
 
 export function ProfilePage() {
   const { user } = useAuth()
-  const [version, setVersion] = useState(0)
-  const [nombre, setNombre] = useState(user?.nombre ?? '')
-  const [plan, setPlan] = useState<PlanId>(user?.plan ?? 'BASICO')
-  const [msg, setMsg] = useState<string | null>(null)
-
-  useEffect(() => onStorageChange(() => setVersion((v) => v + 1)), [])
-  useEffect(() => {
-    setNombre(user?.nombre ?? '')
-    setPlan(user?.plan ?? 'BASICO')
-  }, [user, version])
-
-  const currentPlan = useMemo(() => plans.find((p) => p.id === plan), [plan])
 
   if (!user) {
     return (
@@ -32,6 +20,16 @@ export function ProfilePage() {
       </div>
     )
   }
+
+  return <ProfileInner key={user.id} user={user} />
+}
+
+function ProfileInner({ user }: { user: User }) {
+  const [nombre, setNombre] = useState(user.nombre)
+  const [plan, setPlan] = useState<PlanId>(user.plan)
+  const [msg, setMsg] = useState<string | null>(null)
+
+  const currentPlan = useMemo(() => plans.find((p) => p.id === plan), [plan])
 
   return (
     <div className="space-y-6">
@@ -84,6 +82,10 @@ export function ProfilePage() {
               }
               const res = updateCurrentUser({ nombre: n, plan })
               setMsg(res.ok ? 'Perfil actualizado.' : res.error)
+                if (res.ok) {
+                  setNombre(res.user.nombre)
+                  setPlan(res.user.plan)
+                }
             }}
           >
             Guardar cambios
