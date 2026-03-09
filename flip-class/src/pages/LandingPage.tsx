@@ -1,12 +1,19 @@
 import { Link } from 'react-router-dom'
 import { COURSE_HERO_IMAGE, COURSE_SUBTITLE, COURSE_TITLE, modules } from '../lib/courseData'
+import { plans } from '../lib/plans'
 import { useAuth } from '../auth/useAuth'
 
 const imgShowroom =
   'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=1600&q=80'
 
+function moduleCover(index: number) {
+  const covers = ['from-emerald-700 to-emerald-500', 'from-cyan-700 to-sky-500', 'from-amber-700 to-amber-500']
+  return covers[index % covers.length]
+}
+
 export function LandingPage() {
   const { isAuthenticated } = useAuth()
+  const featuredModules = modules.slice(0, 3)
 
   return (
     <div className="min-h-screen">
@@ -124,72 +131,114 @@ export function LandingPage() {
         <section className="fc-container pb-14">
           <div className="flex items-end justify-between gap-4">
             <div>
-              <h2 className="text-2xl font-bold">Módulos</h2>
-              <p className="mt-2 text-white/70">El contenido base del curso (7 módulos).</p>
+              <h2 className="text-2xl font-bold">Nuestros Módulos</h2>
+              <p className="mt-2 text-white/70">Contenido principal del curso para avanzar con una ruta clara.</p>
             </div>
             <Link className="fc-btn-secondary" to={isAuthenticated ? '/app/curso' : '/registro'}>
               Ver dentro del portal
             </Link>
           </div>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {modules.map((m) => (
-              <div key={m.id} className="fc-card overflow-hidden">
-                <div className="grid sm:grid-cols-[160px_1fr]">
-                  {m.imagenUrl ? (
-                    <img
-                      src={m.imagenUrl}
-                      alt={m.titulo}
-                      className="h-full w-full object-cover opacity-90"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className="bg-white/10" />
-                  )}
-                  <div className="p-5">
-                    <div className="font-semibold">{m.titulo}</div>
-                    <div className="mt-1 text-sm text-white/70">{m.subtitulo}</div>
-                    <div className="mt-2 text-sm text-white/70">{m.descripcion}</div>
+          <div className="mt-6 grid gap-4 lg:grid-cols-3">
+            {featuredModules.map((m, index) => {
+              const cleanTitle = m.titulo.replace(/^M[ÓO]DULO\s+\d+\s+—\s+/i, '')
+              return (
+                <article key={m.id} className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+                  <div className={`relative min-h-[150px] bg-gradient-to-br p-4 ${moduleCover(index)}`}>
+                    {m.imagenUrl ? (
+                      <img
+                        src={m.imagenUrl}
+                        alt={m.titulo}
+                        className="absolute inset-0 h-full w-full object-cover opacity-20"
+                        loading="lazy"
+                      />
+                    ) : null}
+                    <div className="relative flex justify-between">
+                      <span className="rounded-full bg-black/30 px-2.5 py-1 text-[11px] font-semibold text-white">
+                        FLIP CLASS
+                      </span>
+                      <span className="rounded-full bg-black/30 px-2.5 py-1 text-[11px] font-semibold text-white">
+                        Módulo {index + 1}
+                      </span>
+                    </div>
+                    <div className="relative mt-6 text-2xl font-extrabold uppercase leading-tight text-white">
+                      {cleanTitle}
+                    </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                  <div className="p-5">
+                    <div className="text-lg font-semibold text-slate-900">{cleanTitle}</div>
+                    <div className="mt-1 text-sm text-slate-500">{m.subtitulo}</div>
+                    <div className="mt-2 text-sm text-slate-600">{m.descripcion}</div>
+                    <div className="mt-4 flex items-center justify-between">
+                      <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold uppercase text-emerald-700">
+                        Disponible
+                      </span>
+                      <Link
+                        className="inline-flex rounded-xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700"
+                        to={isAuthenticated ? '/app/curso' : '/registro'}
+                      >
+                        Ver programa
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              )
+            })}
           </div>
         </section>
 
         <section className="fc-container pb-16">
-          <div className="fc-card p-8">
-            <div className="grid gap-6 md:grid-cols-2 md:items-center">
-              <div>
-                <h2 className="text-2xl font-bold">Planes FLIP CLASS</h2>
-                <p className="mt-3 text-white/70">
-                  Elige tu nivel: desde online para partir, hasta Pro para escalar como automotora.
-                </p>
-                <div className="mt-6 flex gap-3">
-                  <Link className="fc-btn-primary" to="/planes">
-                    Ver planes
-                  </Link>
-                  <Link className="fc-btn-secondary" to={isAuthenticated ? '/app' : '/registro'}>
-                    Entrar al portal
-                  </Link>
-                </div>
-              </div>
-
-              <div className="grid gap-3 sm:grid-cols-3">
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                  <div className="text-sm font-semibold">Básico</div>
-                  <div className="mt-1 text-xs text-white/60">Online + comunidad</div>
-                </div>
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                  <div className="text-sm font-semibold">Híbrido</div>
-                  <div className="mt-1 text-xs text-white/60">Online + 1 presencial</div>
-                </div>
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                  <div className="text-sm font-semibold">Pro</div>
-                  <div className="mt-1 text-xs text-white/60">Presencial mensual</div>
-                </div>
-              </div>
+          <div className="rounded-3xl border border-white/10 bg-slate-50 px-4 py-8 text-slate-900 shadow-lg sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h2 className="text-2xl font-bold sm:text-3xl">Planes FLIP CLASS</h2>
+              <p className="mx-auto mt-3 max-w-2xl text-slate-600">
+                Elige tu nivel y empieza con el plan que mejor encaje con tu etapa.
+              </p>
             </div>
+
+            <div className="mt-8 grid gap-4 lg:grid-cols-3">
+              {plans.map((p) => (
+                <article
+                  key={p.id}
+                  className={`rounded-3xl border bg-white p-6 shadow-sm ${p.badge ? 'border-amber-400 ring-1 ring-amber-200' : 'border-slate-200'}`}
+                >
+                  {p.badge ? (
+                    <div className="mb-3 inline-flex rounded-full bg-amber-400 px-3 py-1 text-xs font-bold uppercase text-slate-900">
+                      {p.badge}
+                    </div>
+                  ) : null}
+                  <h3 className="text-2xl font-bold">{p.title}</h3>
+                  <p className="mt-1 text-sm text-slate-500">{p.subtitle}</p>
+                  <div className="mt-4">
+                    <span className="text-5xl font-extrabold text-emerald-700">${p.priceUsd}</span>
+                    <span className="ml-1 text-sm font-semibold text-slate-400">USD</span>
+                  </div>
+                  <p className="mt-4 text-sm text-slate-600">{p.idealFor}</p>
+                  <Link
+                    className={`mt-5 inline-flex w-full items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold transition ${
+                      p.badge
+                        ? 'bg-amber-400 text-slate-900 hover:opacity-90'
+                        : 'border-2 border-emerald-600 text-emerald-700 hover:bg-emerald-50'
+                    }`}
+                    to="/planes"
+                  >
+                    Seleccionar plan
+                  </Link>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-6 text-center">
+              <Link className="fc-btn-secondary" to="/planes">
+                Ver comparación completa
+              </Link>
+              <Link className="fc-btn-primary ml-3" to={isAuthenticated ? '/app' : '/registro'}>
+                Entrar al portal
+              </Link>
+            </div>
+          </div>
+          <div className="mt-4 text-center text-xs text-white/60">
+            * Precios y condiciones referenciales para demo visual.
           </div>
         </section>
       </main>
