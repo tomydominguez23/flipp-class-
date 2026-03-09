@@ -5,6 +5,8 @@ export type Plan = {
   color: 'green' | 'blue' | 'red'
   title: string
   subtitle: string
+  priceUsd: number
+  badge?: string
   includes: string[]
   idealFor: string
 }
@@ -13,12 +15,13 @@ export const plans: Plan[] = [
   {
     id: 'BASICO',
     color: 'green',
-    title: 'PLAN 1 — BÁSICO ONLINE',
-    subtitle: '100% Online',
+    title: 'Plan Básico',
+    subtitle: 'Ideal para iniciar',
+    priceUsd: 399,
     includes: [
-      'Acceso completo a todos los módulos online',
-      'Clases grabadas + actualizaciones',
-      'Material descargable (checklists, contratos base, planillas)',
+      'Acceso completo a los módulos online',
+      'Clases grabadas y actualizaciones',
+      'Material descargable (checklists y planillas)',
       'Acceso a comunidad privada',
     ],
     idealFor: 'Ideal para partir y flippear tu primer auto',
@@ -26,8 +29,10 @@ export const plans: Plan[] = [
   {
     id: 'HIBRIDO',
     color: 'blue',
-    title: 'PLAN 2 — HÍBRIDO',
-    subtitle: 'Online + 1 reunión presencial',
+    title: 'Plan Híbrido',
+    subtitle: 'Mayor frecuencia de clases',
+    priceUsd: 699,
+    badge: 'Más popular',
     includes: [
       'Todo lo del Plan Básico',
       '1 reunión presencial grupal (networking + Q&A)',
@@ -39,8 +44,9 @@ export const plans: Plan[] = [
   {
     id: 'PRO',
     color: 'red',
-    title: 'PLAN 3 — PRO AUTOMOTORA',
-    subtitle: 'Online + presencial mensual',
+    title: 'Plan Pro',
+    subtitle: 'Cobertura intensiva',
+    priceUsd: 1000,
     includes: [
       'Todo lo anterior',
       'Kit de limpieza profesional (microfibra, shampoo, productos pro)',
