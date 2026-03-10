@@ -25,26 +25,26 @@ export function CommunityPage() {
 
   return (
     <div className="space-y-6">
-      <section className="fc-card p-6">
-        <h1 className="text-2xl font-bold">Comunidad</h1>
-        <p className="mt-2 text-white/70">
+      <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <h1 className="text-2xl font-bold text-slate-900">Comunidad</h1>
+        <p className="mt-2 text-slate-600">
           Publica oportunidades, dudas y avances. Responde con números y proceso.
         </p>
 
         <div className="mt-6 grid gap-3 md:grid-cols-2">
           <div>
-            <div className="text-xs text-white/60">Título</div>
+            <div className="text-xs text-slate-500">Título</div>
             <input
-              className="fc-input mt-2"
+              className="fc-auth-input mt-2"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Ej: ¿Conviene este auto con 5M de capital?"
             />
           </div>
           <div>
-            <div className="text-xs text-white/60">Mensaje</div>
+            <div className="text-xs text-slate-500">Mensaje</div>
             <textarea
-              className="fc-input mt-2 min-h-[48px]"
+              className="fc-auth-input mt-2 min-h-[48px]"
               value={body}
               onChange={(e) => setBody(e.target.value)}
               placeholder="Cuenta el caso: año, kilometraje, precio compra, precio salida, gastos estimados..."
@@ -71,33 +71,33 @@ export function CommunityPage() {
 
       <section className="space-y-4">
         {state.posts.map((p) => (
-          <div key={p.id} className="fc-card p-6">
+          <div key={p.id} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
               <div className="min-w-0">
-                <div className="text-lg font-semibold">{p.title}</div>
-                <div className="mt-1 text-xs text-white/60">
+                <div className="text-lg font-semibold text-slate-900">{p.title}</div>
+                <div className="mt-1 text-xs text-slate-500">
                   {p.authorName} · {fmt(p.createdAt)}
                 </div>
               </div>
-              <button className="fc-btn-secondary" onClick={() => likePost(p.id)}>
+              <button className="fc-btn-secondary !border-slate-300 !bg-white !text-slate-700" onClick={() => likePost(p.id)}>
                 Me gusta ({p.likes})
               </button>
             </div>
 
-            <p className="mt-3 whitespace-pre-wrap text-sm text-white/80">{p.body}</p>
+            <p className="mt-3 whitespace-pre-wrap text-sm text-slate-700">{p.body}</p>
 
             <div className="mt-5">
-              <div className="text-sm font-semibold">Comentarios</div>
+              <div className="text-sm font-semibold text-slate-900">Comentarios</div>
               <div className="mt-3 space-y-3">
                 {p.comments.length === 0 ? (
-                  <div className="text-sm text-white/60">Aún no hay comentarios.</div>
+                  <div className="text-sm text-slate-500">Aún no hay comentarios.</div>
                 ) : (
                   p.comments.map((c) => (
-                    <div key={c.id} className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                      <div className="text-xs text-white/60">
+                    <div key={c.id} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                      <div className="text-xs text-slate-500">
                         {c.authorName} · {fmt(c.createdAt)}
                       </div>
-                      <div className="mt-2 whitespace-pre-wrap text-sm text-white/80">{c.body}</div>
+                      <div className="mt-2 whitespace-pre-wrap text-sm text-slate-700">{c.body}</div>
                     </div>
                   ))
                 )}
@@ -105,7 +105,7 @@ export function CommunityPage() {
 
               <div className="mt-4 grid gap-2 sm:grid-cols-[1fr_auto]">
                 <input
-                  className="fc-input"
+                  className="fc-auth-input"
                   value={commentDraft[p.id] ?? ''}
                   onChange={(e) =>
                     setCommentDraft((d) => ({

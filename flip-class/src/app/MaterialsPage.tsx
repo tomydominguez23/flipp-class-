@@ -19,23 +19,23 @@ const resources = [
 export function MaterialsPage() {
   return (
     <div className="space-y-6">
-      <section className="fc-card p-6">
-        <h1 className="text-2xl font-bold">Materiales descargables</h1>
-        <p className="mt-2 text-white/70">
+      <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <h1 className="text-2xl font-bold text-slate-900">Materiales descargables</h1>
+        <p className="mt-2 text-slate-600">
           Recursos prácticos para aplicar el sistema. Quedan como descarga directa.
         </p>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           {resources.map((r) => (
-            <div key={r.href} className="rounded-2xl border border-white/10 bg-white/5 p-5">
-              <div className="font-semibold">{r.title}</div>
-              <div className="mt-2 text-sm text-white/70">{r.desc}</div>
+            <div key={r.href} className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <div className="font-semibold text-slate-900">{r.title}</div>
+              <div className="mt-2 text-sm text-slate-600">{r.desc}</div>
               <a className="fc-btn-primary mt-4 w-full" href={r.href} download>
                 Descargar
               </a>
             </div>
           ))}
         </div>
-        <div className="mt-5 text-xs text-white/50">
+        <div className="mt-5 text-xs text-slate-500">
           Nota: estos documentos son plantillas educativas. Ajusta a tu caso y normativa vigente.
         </div>
       </section>
