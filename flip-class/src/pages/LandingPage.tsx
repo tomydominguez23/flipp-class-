@@ -7,6 +7,8 @@ import { weeklySchedule } from '../lib/schedule'
 
 const imgShowroom =
   'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=1600&q=80'
+const imgShowroomSecondary =
+  'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1600&q=80'
 
 function moduleCover(index: number) {
   const covers = ['from-zinc-900 to-zinc-700', 'from-stone-800 to-neutral-600', 'from-amber-700 to-amber-500']
@@ -423,25 +425,43 @@ export function LandingPage() {
                 </div>
               </div>
             </div>
-            <div className="fc-card overflow-hidden fc-reveal">
-              <img
-                src={imgShowroom}
-                alt="Showroom"
-                className="h-64 w-full object-cover opacity-90"
-                loading="lazy"
-              />
-              <div className="p-6">
-                <div className="text-sm font-semibold">Una ruta clara</div>
-                <div className="mt-2 text-sm text-slate-600">
-                  Entra al portal, revisa módulos y marca lecciones completadas. Participa en la
-                  comunidad y descarga plantillas.
-                </div>
-                <div className="mt-4">
-                  <Link className="fc-btn-primary w-full" to={isAuthenticated ? '/app' : '/registro'}>
-                    Abrir portal
-                  </Link>
+            <div className="space-y-4">
+              <div className="fc-card overflow-hidden fc-reveal">
+                <img
+                  src={imgShowroom}
+                  alt="Showroom"
+                  className="h-64 w-full object-cover opacity-90"
+                  loading="lazy"
+                />
+                <div className="p-6">
+                  <div className="text-sm font-semibold">Una ruta clara</div>
+                  <div className="mt-2 text-sm text-slate-600">
+                    Entra al portal, revisa módulos y marca lecciones completadas. Participa en la
+                    comunidad y descarga plantillas.
+                  </div>
+                  <div className="mt-4">
+                    <Link className="fc-btn-primary w-full" to={isAuthenticated ? '/app' : '/registro'}>
+                      Abrir portal
+                    </Link>
+                  </div>
                 </div>
               </div>
+
+              <article className="fc-card overflow-hidden fc-reveal" style={{ transitionDelay: '100ms' }}>
+                <img
+                  src={imgShowroomSecondary}
+                  alt="Auto en exhibición"
+                  className="h-48 w-full object-cover opacity-90"
+                  loading="lazy"
+                />
+                <div className="p-5">
+                  <div className="text-sm font-semibold">Tip rápido de venta</div>
+                  <p className="mt-2 text-sm text-slate-600">
+                    Publica 12-15 fotos claras, historial básico y un precio con argumento. Eso
+                    aumenta la confianza y acelera cierres.
+                  </p>
+                </div>
+              </article>
             </div>
           </div>
         </section>
