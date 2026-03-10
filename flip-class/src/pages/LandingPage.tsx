@@ -46,6 +46,37 @@ const heroBars = [
   { height: 90, positive: true },
 ]
 
+type Testimonial = {
+  quote: string
+  name: string
+  role: string
+  initials: string
+}
+
+const testimonials: Testimonial[] = [
+  {
+    quote:
+      'Antes de Pro Trading no sabia nada de trading. En 3 meses ya estaba haciendo operaciones consistentes. La metodologia paso a paso es increible.',
+    name: 'Maria Rodriguez',
+    role: 'Trader desde 2024',
+    initials: 'MR',
+  },
+  {
+    quote:
+      'Las clases en vivo y los sabados analiticos son gold. El equipo realmente se preocupa por cada estudiante. 100% recomendado.',
+    name: 'Carlos Lopez',
+    role: 'Trader desde 2023',
+    initials: 'CL',
+  },
+  {
+    quote:
+      'Los elementos de soporte y herramientas son fantasticos. El calculo de rango de precio y los checklists me ayudan a mantener la disciplina.',
+    name: 'Ana Gutierrez',
+    role: 'Trader desde 2024',
+    initials: 'AG',
+  },
+]
+
 type FeatureVisual = {
   toneClass: string
   icon: ReactNode
@@ -364,6 +395,32 @@ export function LandingPage() {
                 <span className="fc-badge">Ads</span>
                 <span className="fc-badge">Contratos</span>
                 <span className="fc-badge">Proceso</span>
+              </div>
+
+              <div className="mt-10 rounded-2xl border border-[#ece6dc] bg-white p-5 shadow-sm">
+                <h3 className="text-center text-2xl font-extrabold text-slate-900">Lo que dicen nuestros estudiantes</h3>
+                <div className="mx-auto mt-3 h-1 w-16 rounded-full bg-amber-500" />
+                <p className="mx-auto mt-4 max-w-2xl text-center text-sm text-slate-500">
+                  Historias reales de personas que avanzaron con una ruta clara.
+                </p>
+
+                <div className="mt-6 grid gap-3">
+                  {testimonials.map((testimonial) => (
+                    <article key={testimonial.name} className="rounded-2xl border border-[#ece6dc] bg-white p-4">
+                      <div className="text-sm text-amber-500">★★★★★</div>
+                      <p className="mt-2 text-sm italic text-slate-600">"{testimonial.quote}"</p>
+                      <div className="mt-4 flex items-center gap-3">
+                        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-teal-700 text-xs font-bold text-white">
+                          {testimonial.initials}
+                        </div>
+                        <div>
+                          <div className="text-sm font-bold text-slate-900">{testimonial.name}</div>
+                          <div className="text-xs text-slate-500">{testimonial.role}</div>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
               </div>
             </div>
             <div className="fc-card overflow-hidden fc-reveal">
