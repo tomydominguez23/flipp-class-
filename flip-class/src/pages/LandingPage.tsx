@@ -182,19 +182,27 @@ export function LandingPage() {
           <img
             src={COURSE_HERO_IMAGE}
             alt="Autos y negocio"
-            className="absolute inset-0 h-full w-full object-cover opacity-30"
+            className="absolute inset-0 h-full w-full object-cover object-center opacity-70 saturate-125 contrast-110"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-[#fbf9f5]/85 to-[#f8f5ef]/95" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/56 to-black/72" />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: 'radial-gradient(circle at 82% 18%, rgba(251, 146, 60, 0.34), transparent 42%)',
+            }}
+          />
 
           <div className="fc-container relative py-16 lg:py-20">
             <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
               <div className="fc-fade-left">
-                <div className="fc-badge">FLIP CLASS · Sistema real de negocio automotriz</div>
-                <h1 className="mt-5 text-4xl font-extrabold leading-tight sm:text-5xl">
+                <div className="fc-badge border-white/20 bg-black/40 text-white">
+                  FLIP CLASS · Sistema real de negocio automotriz
+                </div>
+                <h1 className="mt-5 text-4xl font-extrabold leading-tight text-white sm:text-5xl">
                   Conserva tu esencia, ahora con una experiencia visual más pro.
                 </h1>
-                <p className="mt-4 max-w-2xl text-slate-600">{COURSE_SUBTITLE}</p>
+                <p className="mt-4 max-w-2xl text-white/80">{COURSE_SUBTITLE}</p>
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <Link className="fc-btn-primary" to={isAuthenticated ? '/app' : '/registro'}>
