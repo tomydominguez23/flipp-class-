@@ -447,11 +447,11 @@ export function LandingPage() {
           <div className="text-center">
             <div className="fc-badge">Agenda Semanal</div>
             <h2 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">
-              Horario de Clases en Vivo
+              Horario de Sesiones en Vivo
             </h2>
             <p className="mx-auto mt-3 max-w-3xl text-slate-600">
-              Clases todos los dias de la semana con horarios flexibles para que nunca te pierdas una
-              sesion.
+              Sesiones todas las semanas con horarios flexibles para que avances en compra,
+              venta, negociacion y escala de tu negocio automotriz.
             </p>
           </div>
 

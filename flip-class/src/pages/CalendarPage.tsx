@@ -78,25 +78,25 @@ export function CalendarPage() {
   const quickCards = [
     {
       tag: 'Proximo evento',
-      title: 'Clase con tu Mentor',
+      title: 'Clase de Compra Inteligente',
       time: 'Hoy - 8:00 AM',
       type: 'mentor' as const,
     },
     {
       tag: 'Siguiente',
-      title: 'Sesion de Pre-Mercado',
+      title: 'Sesion de Publicacion y Leads',
       time: 'Hoy - 11:30 AM',
       type: 'premarket' as const,
     },
     {
       tag: 'Esta semana',
-      title: 'Sesion Europa',
+      title: 'Sesion de Negociacion',
       time: 'Martes - 1:00 PM',
       type: 'europa' as const,
     },
     {
       tag: 'Fin de semana',
-      title: 'Sabados Analiticos',
+      title: 'Sabados de Casos Reales',
       time: 'Sabado - 8:00 AM',
       type: 'sabados' as const,
     },
@@ -126,10 +126,10 @@ export function CalendarPage() {
 
       <section className="fc-calendar-hero">
         <div className="fc-container py-12 text-center">
-          <h1 className="text-4xl font-extrabold text-white sm:text-5xl">Calendario de Clases y Eventos</h1>
+          <h1 className="text-4xl font-extrabold text-white sm:text-5xl">Calendario de Sesiones y Eventos</h1>
           <p className="mx-auto mt-4 max-w-3xl text-white/75">
-            Consulta las proximas clases en vivo, sesiones y eventos especiales. Haz clic en cada
-            fecha para revisar tu agenda semanal.
+            Consulta las proximas sesiones en vivo, talleres y eventos especiales de FLIP CLASS.
+            Haz clic en cada fecha para revisar tu agenda semanal.
           </p>
         </div>
       </section>
@@ -184,27 +184,27 @@ export function CalendarPage() {
           <div className="fc-calendar-legend">
             <div className="fc-calendar-legend-item">
               <span className="fc-calendar-dot fc-tone-mentor" />
-              Clase con Mentor
+              Compra Inteligente
             </div>
             <div className="fc-calendar-legend-item">
               <span className="fc-calendar-dot fc-tone-premarket" />
-              Sesion Pre-Mercado
+              Publicacion y Leads
             </div>
             <div className="fc-calendar-legend-item">
               <span className="fc-calendar-dot fc-tone-europa" />
-              Sesion Europa
+              Negociacion
             </div>
             <div className="fc-calendar-legend-item">
               <span className="fc-calendar-dot fc-tone-post" />
-              Sesion Post-Intensivo
+              Cierres y Objeciones
             </div>
             <div className="fc-calendar-legend-item">
               <span className="fc-calendar-dot fc-tone-tc2000" />
-              Sesion TC2000
+              Ads y Captacion
             </div>
             <div className="fc-calendar-legend-item">
               <span className="fc-calendar-dot fc-tone-sabados" />
-              Sabados Analiticos
+              Casos Reales
             </div>
           </div>
 

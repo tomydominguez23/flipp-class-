@@ -28,7 +28,7 @@ export function LoginPage() {
           <div className="fc-auth-brand-inner">
             <Link to="/" className="inline-block">
               <div className="text-4xl font-semibold tracking-wide text-slate-900">{COURSE_TITLE}</div>
-              <div className="mt-1 text-sm font-semibold tracking-[0.38em] text-amber-700">ACADEMY USA</div>
+              <div className="mt-1 text-sm font-semibold tracking-[0.38em] text-amber-700">AUTOS EN CHILE</div>
             </Link>
 
             <h1 className="mt-12 text-5xl font-extrabold leading-tight text-white">
@@ -43,23 +43,23 @@ export function LoginPage() {
 
             <div className="mt-12 grid max-w-xl grid-cols-3 gap-4">
               <div>
-                <div className="text-5xl font-extrabold text-amber-300">2,500+</div>
-                <div className="mt-2 text-sm text-white/65">Estudiantes</div>
+                <div className="text-5xl font-extrabold text-amber-300">7</div>
+                <div className="mt-2 text-sm text-white/65">Modulos</div>
               </div>
               <div>
-                <div className="text-5xl font-extrabold text-amber-300">500+</div>
-                <div className="mt-2 text-sm text-white/65">Clases</div>
+                <div className="text-5xl font-extrabold text-amber-300">30+</div>
+                <div className="mt-2 text-sm text-white/65">Lecciones</div>
               </div>
               <div>
-                <div className="text-5xl font-extrabold text-amber-300">95%</div>
-                <div className="mt-2 text-sm text-white/65">Satisfacción</div>
+                <div className="text-5xl font-extrabold text-amber-300">3</div>
+                <div className="mt-2 text-sm text-white/65">Planes</div>
               </div>
             </div>
 
             <div className="mt-12 flex flex-wrap justify-center gap-3">
-              <span className="fc-auth-chip">🎥 Clases en vivo</span>
-              <span className="fc-auth-chip">👥 Comunidad activa</span>
-              <span className="fc-auth-chip">🧰 Herramientas pro</span>
+              <span className="fc-auth-chip">📹 Sesiones en vivo</span>
+              <span className="fc-auth-chip">🤝 Comunidad de flippers</span>
+              <span className="fc-auth-chip">🧾 Plantillas y contratos</span>
             </div>
           </div>
         </aside>
