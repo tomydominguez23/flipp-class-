@@ -58,23 +58,23 @@ type Testimonial = {
 const testimonials: Testimonial[] = [
   {
     quote:
-      'Antes de Pro Trading no sabia nada de trading. En 3 meses ya estaba haciendo operaciones consistentes. La metodologia paso a paso es increible.',
+      'Antes de FLIP CLASS compraba por impulso y casi no tenia margen. Con el metodo de analisis y ROI ahora solo cierro autos con numeros claros.',
     name: 'Maria Rodriguez',
-    role: 'Trader desde 2024',
+    role: 'Miembro FLIP CLASS desde 2024',
     initials: 'MR',
   },
   {
     quote:
-      'Las clases en vivo y los sabados analiticos son gold. El equipo realmente se preocupa por cada estudiante. 100% recomendado.',
+      'Las clases en vivo y los checklists me ordenaron todo el proceso: busqueda, revision y negociacion. Pase de improvisar a operar con sistema.',
     name: 'Carlos Lopez',
-    role: 'Trader desde 2023',
+    role: 'Miembro FLIP CLASS desde 2023',
     initials: 'CL',
   },
   {
     quote:
-      'Los elementos de soporte y herramientas son fantasticos. El calculo de rango de precio y los checklists me ayudan a mantener la disciplina.',
+      'Lo que mas me sirvio fue el modulo de venta profesional y consignacion. Hoy publico mejor, filtro curiosos y cierro mas rapido.',
     name: 'Ana Gutierrez',
-    role: 'Trader desde 2024',
+    role: 'Miembro FLIP CLASS desde 2024',
     initials: 'AG',
   },
 ]
