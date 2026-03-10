@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { COURSE_HERO_IMAGE, COURSE_SUBTITLE, COURSE_TITLE, modules } from '../lib/courseData'
 import { plans } from '../lib/plans'
 import { useAuth } from '../auth/useAuth'
+import { weeklySchedule } from '../lib/schedule'
 
 const imgShowroom =
   'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=1600&q=80'
@@ -147,6 +148,9 @@ export function LandingPage() {
             </a>
             <a href="#modulos" className="hover:text-slate-900">
               Módulos
+            </a>
+            <a href="#agenda" className="hover:text-slate-900">
+              Agenda
             </a>
             <a href="#planes" className="hover:text-slate-900">
               Planes
@@ -428,6 +432,41 @@ export function LandingPage() {
                 <div className="fc-counter-label">Planes para escalar</div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section id="agenda" className="fc-container py-16">
+          <div className="text-center">
+            <div className="fc-badge">Agenda Semanal</div>
+            <h2 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">
+              Horario de Clases en Vivo
+            </h2>
+            <p className="mx-auto mt-3 max-w-3xl text-slate-600">
+              Clases todos los dias de la semana con horarios flexibles para que nunca te pierdas una
+              sesion.
+            </p>
+          </div>
+
+          <div className="mx-auto mt-8 grid max-w-5xl gap-4 md:grid-cols-2">
+            {weeklySchedule.map((session, index) => (
+              <article
+                key={session.id}
+                className={`fc-schedule-card fc-reveal ${session.type === 'mentor' ? 'is-active' : ''}`}
+                style={{ transitionDelay: `${index * 70}ms` }}
+              >
+                <div className={`fc-schedule-icon fc-tone-${session.type}`}>{session.icon}</div>
+                <div>
+                  <h3 className="text-xl font-bold text-slate-900">{session.title}</h3>
+                  <p className="mt-1 text-sm text-slate-600">{session.timeLabel}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <Link className="fc-btn-primary" to="/calendario">
+              Ver Calendario Completo
+            </Link>
           </div>
         </section>
 
