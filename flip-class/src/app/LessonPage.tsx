@@ -6,7 +6,15 @@ import { onStorageChange } from '../lib/storage'
 import { ProgressBar } from '../components/ProgressBar'
 import { cn } from '../lib/cn'
 import { useAuth } from '../auth/useAuth'
-import { addLessonComment, getLessonComments, likeLessonComment } from '../lib/lessonDiscussion'
+import {
+  addLessonComment,
+  addLessonReply,
+  getLessonComments,
+  getLessonLastSeen,
+  likeLessonComment,
+  likeLessonReply,
+  markLessonSeen,
+} from '../lib/lessonDiscussion'
 
 function fmt(iso: string) {
   try {
@@ -26,6 +34,8 @@ export function LessonPage() {
   const { user } = useAuth()
   const [version, setVersion] = useState(0)
   const [commentDraft, setCommentDraft] = useState('')
+  const [replyDraft, setReplyDraft] = useState<Record<string, string>>({})
+  const [sortBy, setSortBy] = useState<'recentes' | 'populares'>('recentes')
 
   useEffect(() => onStorageChange(() => setVersion((v) => v + 1)), [])
 
@@ -56,6 +66,38 @@ export function LessonPage() {
   const completedInModule = mod.lessons.filter((l) => isLessonCompleted(mod.id, l.id)).length
   const modulePct = mod.lessons.length ? Math.round((completedInModule / mod.lessons.length) * 100) : 0
   const comments = getLessonComments(mod.id, lesson.id)
+  const lastSeenAt = getLessonLastSeen(mod.id, lesson.id)
+
+  const sortedComments = (() => {
+    const base = [...comments]
+    if (sortBy === 'populares') {
+      return base.sort((a, b) => (b.likes === a.likes ? b.createdAt.localeCompare(a.createdAt) : b.likes - a.likes))
+    }
+    return base.sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+  })()
+
+  const unreadItems = (() => {
+    const lastSeen = lastSeenAt ? new Date(lastSeenAt).getTime() : 0
+    const unread: Array<{ domId: string; createdAt: string }> = []
+
+    comments.forEach((comment) => {
+      const commentTime = new Date(comment.createdAt).getTime()
+      if (!Number.isNaN(commentTime) && commentTime > lastSeen) {
+        unread.push({ domId: `lesson-comment-${comment.id}`, createdAt: comment.createdAt })
+      }
+
+      comment.replies.forEach((reply) => {
+        const replyTime = new Date(reply.createdAt).getTime()
+        if (!Number.isNaN(replyTime) && replyTime > lastSeen) {
+          unread.push({ domId: `lesson-reply-${reply.id}`, createdAt: reply.createdAt })
+        }
+      })
+    })
+
+    return unread.sort((a, b) => a.createdAt.localeCompare(b.createdAt))
+  })()
+
+  const firstUnread = unreadItems[0]
 
   return (
     <div className="space-y-6">
@@ -170,7 +212,28 @@ export function LessonPage() {
           <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <div className="flex items-center justify-between gap-3">
               <h2 className="text-lg font-semibold text-slate-900">Comentarios ({comments.length})</h2>
-              <span className="text-xs text-slate-500">Comparte avances y dudas del caso</span>
+              <div className="flex items-center gap-2">
+                {firstUnread ? (
+                  <button
+                    className="fc-btn-secondary !border-amber-300 !bg-amber-50 !text-amber-800"
+                    onClick={() => {
+                      const el = document.getElementById(firstUnread.domId)
+                      el?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                      markLessonSeen(mod.id, lesson.id)
+                    }}
+                  >
+                    Ir al primer no leído ({unreadItems.length})
+                  </button>
+                ) : null}
+                <select
+                  className="rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700"
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value as 'recentes' | 'populares')}
+                >
+                  <option value="recentes">Ordenar: Recientes</option>
+                  <option value="populares">Ordenar: Populares</option>
+                </select>
+              </div>
             </div>
 
             <div className="mt-4">
@@ -193,6 +256,7 @@ export function LessonPage() {
                       body: text,
                     })
                     setCommentDraft('')
+                    markLessonSeen(mod.id, lesson.id)
                   }}
                 >
                   Publicar comentario
@@ -206,8 +270,17 @@ export function LessonPage() {
                   Aún no hay comentarios en esta lección. Sé el primero en compartir tu avance.
                 </div>
               ) : (
-                comments.map((comment) => (
-                  <article key={comment.id} className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                sortedComments.map((comment) => {
+                  const commentUnread = unreadItems.some((item) => item.domId === `lesson-comment-${comment.id}`)
+                  return (
+                  <article
+                    key={comment.id}
+                    id={`lesson-comment-${comment.id}`}
+                    className={cn(
+                      'rounded-xl border bg-slate-50 p-4',
+                      commentUnread ? 'border-amber-200' : 'border-slate-200',
+                    )}
+                  >
                     <div className="flex items-start gap-3">
                       <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">
                         {initials(comment.authorName)}
@@ -231,10 +304,89 @@ export function LessonPage() {
                         >
                           👍 Me gusta ({comment.likes})
                         </button>
+
+                        <div className="mt-3 rounded-lg border border-slate-200 bg-white p-3">
+                          <div className="text-xs font-semibold text-slate-600">Responder</div>
+                          <div className="mt-2 grid gap-2 sm:grid-cols-[1fr_auto]">
+                            <input
+                              className="fc-auth-input"
+                              placeholder="Escribe una respuesta..."
+                              value={replyDraft[comment.id] ?? ''}
+                              onChange={(e) =>
+                                setReplyDraft((draft) => ({ ...draft, [comment.id]: e.target.value }))
+                              }
+                            />
+                            <button
+                              className="fc-btn-secondary !border-slate-300 !bg-white !text-slate-700"
+                              onClick={() => {
+                                const text = (replyDraft[comment.id] ?? '').trim()
+                                if (!text) return
+                                addLessonReply({
+                                  moduleId: mod.id,
+                                  lessonId: lesson.id,
+                                  commentId: comment.id,
+                                  authorName: user?.nombre ?? 'Alumno',
+                                  body: text,
+                                })
+                                setReplyDraft((draft) => ({ ...draft, [comment.id]: '' }))
+                                markLessonSeen(mod.id, lesson.id)
+                              }}
+                            >
+                              Responder
+                            </button>
+                          </div>
+                        </div>
+
+                        {comment.replies.length > 0 ? (
+                          <div className="mt-3 space-y-2">
+                            {comment.replies.map((reply) => {
+                              const replyUnread = unreadItems.some(
+                                (item) => item.domId === `lesson-reply-${reply.id}`,
+                              )
+                              return (
+                                <div
+                                  key={reply.id}
+                                  id={`lesson-reply-${reply.id}`}
+                                  className={cn(
+                                    'rounded-lg border bg-white p-3',
+                                    replyUnread ? 'border-amber-200' : 'border-slate-200',
+                                  )}
+                                >
+                                  <div className="flex items-start gap-2">
+                                    <div className="mt-0.5 flex h-7 w-7 items-center justify-center rounded-full bg-slate-200 text-[10px] font-bold text-slate-700">
+                                      {initials(reply.authorName)}
+                                    </div>
+                                    <div className="min-w-0 flex-1">
+                                      <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
+                                        <span className="font-semibold text-slate-700">{reply.authorName}</span>
+                                        <span>•</span>
+                                        <span>{fmt(reply.createdAt)}</span>
+                                      </div>
+                                      <p className="mt-1 whitespace-pre-wrap text-sm text-slate-700">{reply.body}</p>
+                                      <button
+                                        className="mt-1 text-xs font-semibold text-amber-700 hover:text-amber-800"
+                                        onClick={() =>
+                                          likeLessonReply({
+                                            moduleId: mod.id,
+                                            lessonId: lesson.id,
+                                            commentId: comment.id,
+                                            replyId: reply.id,
+                                          })
+                                        }
+                                      >
+                                        👍 Me gusta ({reply.likes})
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              )
+                            })}
+                          </div>
+                        ) : null}
                       </div>
                     </div>
                   </article>
-                ))
+                )})
               )}
             </div>
           </section>

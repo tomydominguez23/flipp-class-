@@ -62,5 +62,14 @@ export type LessonComment = {
   createdAt: string
   body: string
   likes: number
+  replies: LessonReply[]
+}
+
+export type LessonReply = {
+  id: string
+  authorName: string
+  createdAt: string
+  body: string
+  likes: number
 }
 
