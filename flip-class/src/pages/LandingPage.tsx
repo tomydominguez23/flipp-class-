@@ -54,45 +54,49 @@ type FeatureVisual = {
 
 const featureVisuals: FeatureVisual[] = [
   {
-    tag: 'Rentabilidad',
+    tag: 'Auto',
     toneClass: 'bg-amber-100 text-amber-700',
     icon: (
       <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M3 17l6-6 4 4 7-7" />
-        <path d="M14 8h6v6" />
+        <path d="M3 13h2l2-4h10l2 4h2v4h-2" />
+        <path d="M5 17h14" />
+        <circle cx="7.5" cy="17" r="1.5" />
+        <circle cx="16.5" cy="17" r="1.5" />
       </svg>
     ),
   },
   {
-    tag: 'Compra inteligente',
+    tag: 'Contrato',
     toneClass: 'bg-sky-100 text-sky-700',
     icon: (
       <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="11" cy="11" r="6.5" />
-        <path d="M16 16l5 5" />
-        <path d="M8.5 11h5" />
+        <path d="M7 3h7l4 4v14H7z" />
+        <path d="M14 3v4h4" />
+        <path d="M10 12h5" />
+        <path d="M10 16h5" />
       </svg>
     ),
   },
   {
-    tag: 'Venta profesional',
+    tag: 'Llave',
     toneClass: 'bg-violet-100 text-violet-700',
     icon: (
       <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M4 13V6h7l2 2h7v9H4z" />
-        <path d="M8 17h8" />
+        <circle cx="8" cy="10" r="3" />
+        <path d="M11 10h10" />
+        <path d="M18 10v3" />
+        <path d="M15 10v2" />
       </svg>
     ),
   },
   {
-    tag: 'Escala y procesos',
+    tag: 'Megáfono',
     toneClass: 'bg-emerald-100 text-emerald-700',
     icon: (
       <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
-        <rect x="3" y="4" width="8" height="6" rx="1.5" />
-        <rect x="13" y="4" width="8" height="6" rx="1.5" />
-        <rect x="8" y="14" width="8" height="6" rx="1.5" />
-        <path d="M7 10v2h10v2" />
+        <path d="M3 12v-2l10-4v12L3 14z" />
+        <path d="M13 10h4l3-2v8l-3-2h-4" />
+        <path d="M6 15l1 4h3l-1-3" />
       </svg>
     ),
   },
