@@ -182,6 +182,144 @@
     @apply border-[#d7c8b2] bg-white text-slate-700 hover:bg-[#faf7f2];
   }
 
+  .fc-auth-shell {
+    min-height: 100vh;
+    background: #f8fafc;
+    color: #0f172a;
+  }
+
+  .fc-auth-grid {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.08fr 1fr;
+  }
+
+  .fc-auth-brand {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1f5f66 0%, #2d7c79 55%, #57b6a6 100%);
+  }
+
+  .fc-auth-brand::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.24;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+  }
+
+  .fc-auth-brand-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 84px 56px;
+    text-align: center;
+  }
+
+  .fc-auth-chip {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.92);
+    padding: 0.52rem 0.95rem;
+    border-radius: 0.85rem;
+    font-size: 0.86rem;
+    font-weight: 600;
+    backdrop-filter: blur(6px);
+  }
+
+  .fc-auth-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 44px 32px;
+    background: #fff;
+  }
+
+  .fc-auth-label {
+    display: block;
+    color: #64748b;
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+
+  .fc-auth-input {
+    width: 100%;
+    border: 1px solid #dbe3ec;
+    background: #f3f6f9;
+    border-radius: 0.6rem;
+    padding: 0.78rem 0.9rem;
+    color: #0f172a;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .fc-auth-input::placeholder {
+    color: #94a3b8;
+  }
+
+  .fc-auth-input:focus {
+    border-color: #2d7c79;
+    box-shadow: 0 0 0 3px rgba(45, 124, 121, 0.14);
+  }
+
+  .fc-auth-submit {
+    border: 0;
+    border-radius: 0.65rem;
+    padding: 0.82rem 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #1f5f66, #2d7c79);
+    transition: filter 0.2s ease, transform 0.2s ease;
+  }
+
+  .fc-auth-submit:hover {
+    filter: brightness(1.04);
+    transform: translateY(-1px);
+  }
+
+  .fc-auth-social {
+    border: 1px solid #c7d3df;
+    border-radius: 0.65rem;
+    background: #fff;
+    color: #334155;
+    font-weight: 700;
+    font-size: 0.93rem;
+    padding: 0.72rem 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .fc-auth-social:hover {
+    border-color: #94a3b8;
+    background: #f8fafc;
+  }
+
+  @media (max-width: 1024px) {
+    .fc-auth-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .fc-auth-brand-inner {
+      padding: 48px 26px;
+    }
+
+    .fc-auth-brand-inner h1 {
+      font-size: 2.3rem;
+    }
+
+    .fc-auth-brand-inner .text-5xl {
+      font-size: 2rem;
+    }
+  }
+
   .fc-reveal {
     opacity: 0;
     transform: translateY(22px);
