@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { COURSE_HERO_IMAGE, COURSE_SUBTITLE, COURSE_TITLE, modules } from '../lib/courseData'
 import { plans } from '../lib/plans'
@@ -44,6 +44,58 @@ const heroBars = [
   { height: 74, positive: true },
   { height: 55, positive: true },
   { height: 90, positive: true },
+]
+
+type FeatureVisual = {
+  tag: string
+  toneClass: string
+  icon: ReactNode
+}
+
+const featureVisuals: FeatureVisual[] = [
+  {
+    tag: 'Rentabilidad',
+    toneClass: 'bg-amber-100 text-amber-700',
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M3 17l6-6 4 4 7-7" />
+        <path d="M14 8h6v6" />
+      </svg>
+    ),
+  },
+  {
+    tag: 'Compra inteligente',
+    toneClass: 'bg-sky-100 text-sky-700',
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+        <circle cx="11" cy="11" r="6.5" />
+        <path d="M16 16l5 5" />
+        <path d="M8.5 11h5" />
+      </svg>
+    ),
+  },
+  {
+    tag: 'Venta profesional',
+    toneClass: 'bg-violet-100 text-violet-700',
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M4 13V6h7l2 2h7v9H4z" />
+        <path d="M8 17h8" />
+      </svg>
+    ),
+  },
+  {
+    tag: 'Escala y procesos',
+    toneClass: 'bg-emerald-100 text-emerald-700',
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+        <rect x="3" y="4" width="8" height="6" rx="1.5" />
+        <rect x="13" y="4" width="8" height="6" rx="1.5" />
+        <rect x="8" y="14" width="8" height="6" rx="1.5" />
+        <path d="M7 10v2h10v2" />
+      </svg>
+    ),
+  },
 ]
 
 export function LandingPage() {
@@ -280,13 +332,23 @@ export function LandingPage() {
           </div>
 
           <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {featuredModules.slice(0, 4).map((m, index) => (
+            {featuredModules.slice(0, 4).map((m, index) => {
+              const visual = featureVisuals[index % featureVisuals.length]
+              return (
               <article key={m.id} className="fc-feature-card fc-reveal" style={{ transitionDelay: `${index * 80}ms` }}>
-                <div className="fc-feature-number">{index + 1}</div>
+                <div className="flex items-start justify-between gap-3">
+                  <div className={`inline-flex h-12 w-12 items-center justify-center rounded-xl ${visual.toneClass}`}>
+                    {visual.icon}
+                  </div>
+                  <div className="fc-feature-number">{index + 1}</div>
+                </div>
+                <div className="mt-4 text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">
+                  {visual.tag}
+                </div>
                 <h3 className="mt-4 text-lg font-bold text-slate-900">{m.titulo.replace(/^M[ÓO]DULO\s+\d+\s+—\s+/i, '')}</h3>
                 <p className="mt-2 text-sm text-slate-600">{m.subtitulo}</p>
               </article>
-            ))}
+            )})}
           </div>
 
           <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:items-center">
