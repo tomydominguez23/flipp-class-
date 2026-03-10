@@ -8,7 +8,7 @@ const imgShowroom =
   'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=1600&q=80'
 
 function moduleCover(index: number) {
-  const covers = ['from-emerald-700 to-emerald-500', 'from-cyan-700 to-sky-500', 'from-amber-700 to-amber-500']
+  const covers = ['from-zinc-900 to-zinc-700', 'from-stone-800 to-neutral-600', 'from-amber-700 to-amber-500']
   return covers[index % covers.length]
 }
 
@@ -128,30 +128,30 @@ export function LandingPage() {
       <header
         className={`sticky top-0 z-50 border-b backdrop-blur-xl transition-all duration-300 ${
           isNavScrolled
-            ? 'border-white/10 bg-slate-950/90 shadow-[0_8px_30px_rgba(0,0,0,0.35)]'
-            : 'border-transparent bg-slate-950/55'
+            ? 'border-[#ece5d8] bg-white/95 shadow-[0_8px_30px_rgba(0,0,0,0.08)]'
+            : 'border-transparent bg-white/80'
         }`}
       >
         <div className="fc-container flex items-center justify-between py-3">
           <Link to="/" className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-xl bg-gradient-to-r from-emerald-500 to-sky-500 shadow-lg shadow-emerald-500/25" />
+            <div className="h-9 w-9 rounded-xl bg-gradient-to-r from-zinc-900 to-amber-600 shadow-lg shadow-amber-200" />
             <div>
               <div className="text-sm font-semibold leading-tight">{COURSE_TITLE}</div>
-              <div className="text-xs text-white/60 leading-tight">Portal de estudio</div>
+              <div className="text-xs text-slate-500 leading-tight">Portal de estudio</div>
             </div>
           </Link>
 
-          <nav className="hidden items-center gap-6 text-sm text-white/70 lg:flex">
-            <a href="#metodo" className="hover:text-white">
+          <nav className="hidden items-center gap-6 text-sm text-slate-600 lg:flex">
+            <a href="#metodo" className="hover:text-slate-900">
               Programa
             </a>
-            <a href="#modulos" className="hover:text-white">
+            <a href="#modulos" className="hover:text-slate-900">
               Módulos
             </a>
-            <a href="#planes" className="hover:text-white">
+            <a href="#planes" className="hover:text-slate-900">
               Planes
             </a>
-            <a href="#faq" className="hover:text-white">
+            <a href="#faq" className="hover:text-slate-900">
               FAQ
             </a>
           </nav>
@@ -181,7 +181,7 @@ export function LandingPage() {
             className="absolute inset-0 h-full w-full object-cover opacity-30"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-950/55 to-slate-950" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-[#fbf9f5]/85 to-[#f8f5ef]/95" />
 
           <div className="fc-container relative py-16 lg:py-20">
             <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
@@ -190,7 +190,7 @@ export function LandingPage() {
                 <h1 className="mt-5 text-4xl font-extrabold leading-tight sm:text-5xl">
                   Conserva tu esencia, ahora con una experiencia visual más pro.
                 </h1>
-                <p className="mt-4 max-w-2xl text-white/75">{COURSE_SUBTITLE}</p>
+                <p className="mt-4 max-w-2xl text-slate-600">{COURSE_SUBTITLE}</p>
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <Link className="fc-btn-primary" to={isAuthenticated ? '/app' : '/registro'}>
@@ -228,7 +228,7 @@ export function LandingPage() {
                   <img src={imgShowroom} alt="Showroom" className="h-44 w-full rounded-2xl object-cover opacity-85" />
                   <div className="mt-5 flex items-center justify-between">
                     <span className="text-sm font-semibold">Ruta de crecimiento</span>
-                    <span className="rounded-full bg-emerald-400/20 px-3 py-1 text-xs font-semibold text-emerald-300">
+                    <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">
                       +12.4%
                     </span>
                   </div>
@@ -246,7 +246,7 @@ export function LandingPage() {
                     ))}
                   </div>
 
-                  <div className="mt-3 flex justify-between text-[11px] text-white/50">
+                  <div className="mt-3 flex justify-between text-[11px] text-slate-500">
                     <span>Inicio</span>
                     <span>Aprendizaje</span>
                     <span>Escala</span>
@@ -261,7 +261,7 @@ export function LandingPage() {
           <div className="text-center">
             <div className="fc-badge">Nuestra metodología</div>
             <h2 className="mt-4 text-3xl font-bold">¿Qué enseña Flip Class?</h2>
-            <p className="mx-auto mt-3 max-w-3xl text-white/70">
+            <p className="mx-auto mt-3 max-w-3xl text-slate-600">
               No es solo “compra barato y vende caro”. Es un sistema completo: compra inteligente, venta
               profesional, consignación, publicidad, marca personal y formalización.
             </p>
@@ -271,15 +271,15 @@ export function LandingPage() {
             {featuredModules.slice(0, 4).map((m, index) => (
               <article key={m.id} className="fc-feature-card fc-reveal" style={{ transitionDelay: `${index * 80}ms` }}>
                 <div className="fc-feature-number">{index + 1}</div>
-                <h3 className="mt-4 text-lg font-bold text-white">{m.titulo.replace(/^M[ÓO]DULO\s+\d+\s+—\s+/i, '')}</h3>
-                <p className="mt-2 text-sm text-white/70">{m.subtitulo}</p>
+                <h3 className="mt-4 text-lg font-bold text-slate-900">{m.titulo.replace(/^M[ÓO]DULO\s+\d+\s+—\s+/i, '')}</h3>
+                <p className="mt-2 text-sm text-slate-600">{m.subtitulo}</p>
               </article>
             ))}
           </div>
 
           <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:items-center">
             <div className="fc-reveal">
-              <p className="text-white/70">
+              <p className="text-slate-600">
                 No es solo “compra barato y vende caro”. Es un sistema completo: compra inteligente,
                 venta profesional, consignación, publicidad, marca personal y formalización.
               </p>
@@ -300,7 +300,7 @@ export function LandingPage() {
               />
               <div className="p-6">
                 <div className="text-sm font-semibold">Una ruta clara</div>
-                <div className="mt-2 text-sm text-white/70">
+                <div className="mt-2 text-sm text-slate-600">
                   Entra al portal, revisa módulos y marca lecciones completadas. Participa en la
                   comunidad y descarga plantillas.
                 </div>
@@ -318,7 +318,7 @@ export function LandingPage() {
           <div className="flex items-end justify-between gap-4">
             <div>
               <h2 className="text-2xl font-bold">Nuestros Módulos</h2>
-              <p className="mt-2 text-white/70">Contenido principal del curso para avanzar con una ruta clara.</p>
+              <p className="mt-2 text-slate-600">Contenido principal del curso para avanzar con una ruta clara.</p>
             </div>
             <Link className="fc-btn-secondary" to={isAuthenticated ? '/app/curso' : '/registro'}>
               Ver dentro del portal
@@ -365,9 +365,9 @@ export function LandingPage() {
                       <div
                         className={`h-full rounded-full ${
                           progress.tone === 'complete'
-                            ? 'bg-emerald-500'
+                            ? 'bg-amber-500'
                             : progress.tone === 'progress'
-                              ? 'bg-sky-500'
+                              ? 'bg-violet-500'
                               : 'bg-slate-300'
                         }`}
                         style={{ width: `${progress.value}%` }}
@@ -378,16 +378,16 @@ export function LandingPage() {
                       <span
                         className={`rounded-full px-3 py-1 text-xs font-semibold uppercase ${
                           progress.tone === 'complete'
-                            ? 'bg-emerald-100 text-emerald-700'
+                            ? 'bg-amber-100 text-amber-800'
                             : progress.tone === 'progress'
-                              ? 'bg-sky-100 text-sky-700'
+                              ? 'bg-violet-100 text-violet-700'
                               : 'bg-slate-200 text-slate-600'
                         }`}
                       >
                         {progress.label}
                       </span>
                       <Link
-                        className="inline-flex rounded-xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700"
+                        className="inline-flex rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800"
                         to={isAuthenticated ? '/app/curso' : '/registro'}
                       >
                         Ver programa
@@ -432,7 +432,7 @@ export function LandingPage() {
         </section>
 
         <section id="planes" className="fc-container py-16">
-          <div className="rounded-3xl border border-white/10 bg-slate-50 px-4 py-8 text-slate-900 shadow-lg sm:px-6 lg:px-8">
+          <div className="rounded-3xl border border-slate-200 bg-slate-50 px-4 py-8 text-slate-900 shadow-lg sm:px-6 lg:px-8">
             <div className="text-center">
               <h2 className="text-2xl font-bold sm:text-3xl">Planes FLIP CLASS</h2>
               <p className="mx-auto mt-3 max-w-2xl text-slate-600">
@@ -457,7 +457,7 @@ export function LandingPage() {
                   <h3 className="text-2xl font-bold">{p.title}</h3>
                   <p className="mt-1 text-sm text-slate-500">{p.subtitle}</p>
                   <div className="mt-4">
-                    <span className="text-5xl font-extrabold text-emerald-700">${p.priceUsd}</span>
+                    <span className="text-5xl font-extrabold text-slate-900">${p.priceUsd}</span>
                     <span className="ml-1 text-sm font-semibold text-slate-400">USD</span>
                   </div>
                   <p className="mt-4 text-sm text-slate-600">{p.idealFor}</p>
@@ -465,7 +465,7 @@ export function LandingPage() {
                     className={`mt-5 inline-flex w-full items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold transition ${
                       p.badge
                         ? 'bg-amber-400 text-slate-900 hover:opacity-90'
-                        : 'border-2 border-emerald-600 text-emerald-700 hover:bg-emerald-50'
+                        : 'border-2 border-slate-700 text-slate-700 hover:bg-slate-100'
                     }`}
                     to="/planes"
                   >
@@ -484,7 +484,7 @@ export function LandingPage() {
               </Link>
             </div>
           </div>
-          <div className="mt-4 text-center text-xs text-white/60">
+          <div className="mt-4 text-center text-xs text-slate-500">
             * Precios y condiciones referenciales para demo visual.
           </div>
         </section>
@@ -511,16 +511,16 @@ export function LandingPage() {
             ].map((item, index) => (
               <article key={item.q} className="fc-card p-5 fc-reveal" style={{ transitionDelay: `${index * 90}ms` }}>
                 <h3 className="text-base font-semibold">{item.q}</h3>
-                <p className="mt-2 text-sm text-white/70">{item.a}</p>
+                <p className="mt-2 text-sm text-slate-600">{item.a}</p>
               </article>
             ))}
           </div>
         </section>
 
         <section className="fc-cta-section">
-          <div className="fc-container relative z-10 py-16 text-center">
+          <div className="fc-container relative z-10 py-16 text-center text-white">
             <h2 className="text-3xl font-extrabold sm:text-4xl">Lleva tu proyecto automotriz al siguiente nivel</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-white/75">
+            <p className="mx-auto mt-4 max-w-2xl text-white/80">
               Mismos contenidos, misma esencia de FLIP CLASS, ahora con una presentación visual más moderna y
               orientada a conversión.
             </p>
@@ -536,8 +536,8 @@ export function LandingPage() {
         </section>
       </main>
 
-      <footer className="border-t border-white/10 bg-white/5">
-        <div className="fc-container py-8 text-sm text-white/60">
+      <footer className="border-t border-slate-200 bg-white">
+        <div className="fc-container py-8 text-sm text-slate-500">
           {COURSE_TITLE} · Demo de portal tipo Skool (contenido y recursos en construcción).
         </div>
       </footer>

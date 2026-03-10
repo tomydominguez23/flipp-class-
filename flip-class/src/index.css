@@ -58,10 +58,11 @@
 
 @layer components {
   .fc-landing-bg {
+    color: rgb(15 23 42);
     background:
-      radial-gradient(1200px 520px at 100% -20%, rgba(16, 185, 129, 0.17), transparent 60%),
-      radial-gradient(900px 430px at 0% -5%, rgba(14, 165, 233, 0.15), transparent 55%),
-      rgb(var(--fc-bg));
+      radial-gradient(1200px 520px at 100% -20%, rgba(180, 141, 78, 0.17), transparent 60%),
+      radial-gradient(900px 430px at 0% -5%, rgba(138, 115, 88, 0.11), transparent 55%),
+      #fff;
   }
 
   .fc-landing-hero {
@@ -71,19 +72,19 @@
   }
 
   .fc-stat-card {
-    @apply rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur;
+    @apply rounded-2xl border border-[#ece7de] bg-white p-4 shadow-sm;
   }
 
   .fc-stat-number {
-    @apply block text-2xl font-extrabold text-emerald-300;
+    @apply block text-2xl font-extrabold text-amber-700;
   }
 
   .fc-stat-label {
-    @apply mt-1 block text-xs text-white/65;
+    @apply mt-1 block text-xs text-slate-500;
   }
 
   .fc-hero-panel {
-    @apply rounded-3xl border border-white/10 bg-white/10 p-5 shadow-2xl backdrop-blur-xl;
+    @apply rounded-3xl border border-[#eae3d8] bg-white/95 p-5 shadow-xl;
   }
 
   .fc-chart-bars {
@@ -103,25 +104,25 @@
   }
 
   .fc-chart-bar.is-positive {
-    background: linear-gradient(to top, rgba(16, 185, 129, 0.35), rgb(52, 211, 153));
+    background: linear-gradient(to top, rgba(217, 119, 6, 0.3), rgb(245, 158, 11));
   }
 
   .fc-chart-bar.is-negative {
-    background: linear-gradient(to top, rgba(239, 68, 68, 0.3), rgb(248, 113, 113));
+    background: linear-gradient(to top, rgba(168, 85, 247, 0.3), rgb(139, 92, 246));
   }
 
   .fc-feature-card {
-    @apply rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur transition-all duration-300;
+    @apply rounded-2xl border border-[#ece6dc] bg-white p-6 transition-all duration-300;
   }
 
   .fc-feature-card:hover {
     transform: translateY(-6px);
-    border-color: rgba(52, 211, 153, 0.4);
-    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.28);
+    border-color: rgba(180, 141, 78, 0.5);
+    box-shadow: 0 16px 35px rgba(15, 23, 42, 0.12);
   }
 
   .fc-feature-number {
-    @apply inline-flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 to-sky-500 text-sm font-bold text-slate-900;
+    @apply inline-flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-zinc-900 to-amber-600 text-sm font-bold text-white;
   }
 
   .fc-module-card {
@@ -131,27 +132,27 @@
   .fc-module-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 18px 35px rgba(2, 6, 23, 0.2);
-    border-color: rgba(16, 185, 129, 0.45);
+    border-color: rgba(180, 141, 78, 0.48);
   }
 
   .fc-counter-section {
-    background: linear-gradient(145deg, rgba(2, 6, 23, 0.92), rgba(15, 23, 42, 0.92));
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(145deg, rgba(249, 247, 243, 0.95), rgba(244, 239, 230, 0.95));
+    border-top: 1px solid rgba(188, 174, 151, 0.35);
+    border-bottom: 1px solid rgba(188, 174, 151, 0.35);
   }
 
   .fc-counter-number {
-    @apply text-4xl font-extrabold text-emerald-300;
+    @apply text-4xl font-extrabold text-slate-900;
   }
 
   .fc-counter-label {
-    @apply mt-1 text-sm text-white/65;
+    @apply mt-1 text-sm text-slate-600;
   }
 
   .fc-cta-section {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, rgba(6, 78, 59, 0.55), rgba(3, 105, 161, 0.5));
+    background: linear-gradient(135deg, #0f172a, #312e81);
   }
 
   .fc-cta-section::before {
@@ -161,8 +162,24 @@
     height: 460px;
     right: -180px;
     top: -190px;
-    background: radial-gradient(circle, rgba(52, 211, 153, 0.26), transparent 70%);
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.24), transparent 70%);
     pointer-events: none;
+  }
+
+  .fc-landing-bg .fc-badge {
+    @apply border-[#e9e2d6] bg-[#fbf9f5] text-slate-700;
+  }
+
+  .fc-landing-bg .fc-card {
+    @apply border-[#ece6dc] bg-white;
+  }
+
+  .fc-landing-bg .fc-btn-primary {
+    @apply bg-gradient-to-r from-zinc-900 to-zinc-700 text-white hover:opacity-95;
+  }
+
+  .fc-landing-bg .fc-btn-secondary {
+    @apply border-[#d7c8b2] bg-white text-slate-700 hover:bg-[#faf7f2];
   }
 
   .fc-reveal {
