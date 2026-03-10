@@ -56,3 +56,11 @@ export type CommunityState = {
   posts: CommunityPost[]
 }
 
+export type LessonComment = {
+  id: string
+  authorName: string
+  createdAt: string
+  body: string
+  likes: number
+}
+

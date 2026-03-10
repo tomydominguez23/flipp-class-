@@ -5,10 +5,27 @@ import { useEffect, useState } from 'react'
 import { onStorageChange } from '../lib/storage'
 import { ProgressBar } from '../components/ProgressBar'
 import { cn } from '../lib/cn'
+import { useAuth } from '../auth/useAuth'
+import { addLessonComment, getLessonComments, likeLessonComment } from '../lib/lessonDiscussion'
+
+function fmt(iso: string) {
+  try {
+    return new Date(iso).toLocaleString('es-CL', { dateStyle: 'medium', timeStyle: 'short' })
+  } catch {
+    return iso
+  }
+}
+
+function initials(name: string) {
+  const parts = name.trim().split(/\s+/).slice(0, 2)
+  return parts.map((p) => p[0]?.toUpperCase() ?? '').join('') || 'AL'
+}
 
 export function LessonPage() {
   const { moduleId, lessonId } = useParams()
+  const { user } = useAuth()
   const [version, setVersion] = useState(0)
+  const [commentDraft, setCommentDraft] = useState('')
 
   useEffect(() => onStorageChange(() => setVersion((v) => v + 1)), [])
 
@@ -38,6 +55,7 @@ export function LessonPage() {
   const { mod, lesson, prev, next, done } = model
   const completedInModule = mod.lessons.filter((l) => isLessonCompleted(mod.id, l.id)).length
   const modulePct = mod.lessons.length ? Math.round((completedInModule / mod.lessons.length) * 100) : 0
+  const comments = getLessonComments(mod.id, lesson.id)
 
   return (
     <div className="space-y-6">
@@ -146,6 +164,78 @@ export function LessonPage() {
               <Link className="fc-btn-secondary !border-slate-300 !bg-white !text-slate-700" to="/app/comunidad">
                 Ir a comunidad
               </Link>
+            </div>
+          </section>
+
+          <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div className="flex items-center justify-between gap-3">
+              <h2 className="text-lg font-semibold text-slate-900">Comentarios ({comments.length})</h2>
+              <span className="text-xs text-slate-500">Comparte avances y dudas del caso</span>
+            </div>
+
+            <div className="mt-4">
+              <textarea
+                className="fc-auth-input min-h-[88px]"
+                placeholder="Escribe tu comentario o pregunta sobre esta clase..."
+                value={commentDraft}
+                onChange={(e) => setCommentDraft(e.target.value)}
+              />
+              <div className="mt-2 text-right">
+                <button
+                  className="fc-btn-primary"
+                  onClick={() => {
+                    const text = commentDraft.trim()
+                    if (!text) return
+                    addLessonComment({
+                      moduleId: mod.id,
+                      lessonId: lesson.id,
+                      authorName: user?.nombre ?? 'Alumno',
+                      body: text,
+                    })
+                    setCommentDraft('')
+                  }}
+                >
+                  Publicar comentario
+                </button>
+              </div>
+            </div>
+
+            <div className="mt-5 space-y-3">
+              {comments.length === 0 ? (
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-500">
+                  Aún no hay comentarios en esta lección. Sé el primero en compartir tu avance.
+                </div>
+              ) : (
+                comments.map((comment) => (
+                  <article key={comment.id} className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                    <div className="flex items-start gap-3">
+                      <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">
+                        {initials(comment.authorName)}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center gap-2 text-xs text-slate-500">
+                          <span className="font-semibold text-slate-700">{comment.authorName}</span>
+                          <span>•</span>
+                          <span>{fmt(comment.createdAt)}</span>
+                        </div>
+                        <p className="mt-2 whitespace-pre-wrap text-sm text-slate-700">{comment.body}</p>
+                        <button
+                          className="mt-2 text-xs font-semibold text-amber-700 hover:text-amber-800"
+                          onClick={() =>
+                            likeLessonComment({
+                              moduleId: mod.id,
+                              lessonId: lesson.id,
+                              commentId: comment.id,
+                            })
+                          }
+                        >
+                          👍 Me gusta ({comment.likes})
+                        </button>
+                      </div>
+                    </div>
+                  </article>
+                ))
+              )}
             </div>
           </section>
         </div>
