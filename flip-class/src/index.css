@@ -55,3 +55,169 @@
     @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-white/80;
   }
 }
+
+@layer components {
+  .fc-landing-bg {
+    background:
+      radial-gradient(1200px 520px at 100% -20%, rgba(16, 185, 129, 0.17), transparent 60%),
+      radial-gradient(900px 430px at 0% -5%, rgba(14, 165, 233, 0.15), transparent 55%),
+      rgb(var(--fc-bg));
+  }
+
+  .fc-landing-hero {
+    min-height: min(940px, calc(100vh - 64px));
+    display: flex;
+    align-items: center;
+  }
+
+  .fc-stat-card {
+    @apply rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur;
+  }
+
+  .fc-stat-number {
+    @apply block text-2xl font-extrabold text-emerald-300;
+  }
+
+  .fc-stat-label {
+    @apply mt-1 block text-xs text-white/65;
+  }
+
+  .fc-hero-panel {
+    @apply rounded-3xl border border-white/10 bg-white/10 p-5 shadow-2xl backdrop-blur-xl;
+  }
+
+  .fc-chart-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.45rem;
+    height: 170px;
+  }
+
+  .fc-chart-bar {
+    flex: 1;
+    min-width: 8px;
+    border-radius: 999px 999px 4px 4px;
+    transform-origin: bottom;
+    opacity: 0;
+    animation: fc-grow-bar 0.6s ease forwards;
+  }
+
+  .fc-chart-bar.is-positive {
+    background: linear-gradient(to top, rgba(16, 185, 129, 0.35), rgb(52, 211, 153));
+  }
+
+  .fc-chart-bar.is-negative {
+    background: linear-gradient(to top, rgba(239, 68, 68, 0.3), rgb(248, 113, 113));
+  }
+
+  .fc-feature-card {
+    @apply rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur transition-all duration-300;
+  }
+
+  .fc-feature-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(52, 211, 153, 0.4);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.28);
+  }
+
+  .fc-feature-number {
+    @apply inline-flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 to-sky-500 text-sm font-bold text-slate-900;
+  }
+
+  .fc-module-card {
+    @apply overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300;
+  }
+
+  .fc-module-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 35px rgba(2, 6, 23, 0.2);
+    border-color: rgba(16, 185, 129, 0.45);
+  }
+
+  .fc-counter-section {
+    background: linear-gradient(145deg, rgba(2, 6, 23, 0.92), rgba(15, 23, 42, 0.92));
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .fc-counter-number {
+    @apply text-4xl font-extrabold text-emerald-300;
+  }
+
+  .fc-counter-label {
+    @apply mt-1 text-sm text-white/65;
+  }
+
+  .fc-cta-section {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(6, 78, 59, 0.55), rgba(3, 105, 161, 0.5));
+  }
+
+  .fc-cta-section::before {
+    content: '';
+    position: absolute;
+    width: 460px;
+    height: 460px;
+    right: -180px;
+    top: -190px;
+    background: radial-gradient(circle, rgba(52, 211, 153, 0.26), transparent 70%);
+    pointer-events: none;
+  }
+
+  .fc-reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+
+  .fc-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fc-fade-left {
+    opacity: 0;
+    animation: fc-fade-left 0.65s ease forwards;
+    animation-delay: 0.18s;
+  }
+
+  .fc-fade-right {
+    opacity: 0;
+    animation: fc-fade-right 0.65s ease forwards;
+    animation-delay: 0.32s;
+  }
+}
+
+@keyframes fc-grow-bar {
+  from {
+    transform: scaleY(0.08);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fc-fade-left {
+  from {
+    opacity: 0;
+    transform: translateX(-22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fc-fade-right {
+  from {
+    opacity: 0;
+    transform: translateX(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
