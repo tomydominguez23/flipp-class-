@@ -182,10 +182,10 @@ export function LandingPage() {
           <img
             src={COURSE_HERO_IMAGE}
             alt="Autos y negocio"
-            className="absolute inset-0 h-full w-full object-cover opacity-30"
+            className="absolute inset-0 h-full w-full object-cover object-center opacity-55 saturate-110"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-[#fbf9f5]/85 to-[#f8f5ef]/95" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-[#fbf9f5]/62 to-[#f8f5ef]/80" />
 
           <div className="fc-container relative py-16 lg:py-20">
             <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
