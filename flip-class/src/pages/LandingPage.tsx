@@ -460,6 +460,14 @@ export function LandingPage() {
                     Publica 12-15 fotos claras, historial básico y un precio con argumento. Eso
                     aumenta la confianza y acelera cierres.
                   </p>
+                  <div className="mt-4">
+                    <Link
+                      className="inline-flex rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
+                      to={isAuthenticated ? '/app/curso' : '/registro'}
+                    >
+                      Ver checklist
+                    </Link>
+                  </div>
                 </div>
               </article>
             </div>
