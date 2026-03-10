@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { COURSE_HERO_IMAGE, COURSE_SUBTITLE, COURSE_TITLE, modules } from '../lib/courseData'
 import { plans } from '../lib/plans'
@@ -44,6 +44,62 @@ const heroBars = [
   { height: 74, positive: true },
   { height: 55, positive: true },
   { height: 90, positive: true },
+]
+
+type FeatureVisual = {
+  tag: string
+  toneClass: string
+  icon: ReactNode
+}
+
+const featureVisuals: FeatureVisual[] = [
+  {
+    tag: 'Auto',
+    toneClass: 'bg-amber-100 text-amber-700',
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M3 13h2l2-4h10l2 4h2v4h-2" />
+        <path d="M5 17h14" />
+        <circle cx="7.5" cy="17" r="1.5" />
+        <circle cx="16.5" cy="17" r="1.5" />
+      </svg>
+    ),
+  },
+  {
+    tag: 'Contrato',
+    toneClass: 'bg-sky-100 text-sky-700',
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M7 3h7l4 4v14H7z" />
+        <path d="M14 3v4h4" />
+        <path d="M10 12h5" />
+        <path d="M10 16h5" />
+      </svg>
+    ),
+  },
+  {
+    tag: 'Llave',
+    toneClass: 'bg-violet-100 text-violet-700',
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+        <circle cx="8" cy="10" r="3" />
+        <path d="M11 10h10" />
+        <path d="M18 10v3" />
+        <path d="M15 10v2" />
+      </svg>
+    ),
+  },
+  {
+    tag: 'Megáfono',
+    toneClass: 'bg-emerald-100 text-emerald-700',
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M3 12v-2l10-4v12L3 14z" />
+        <path d="M13 10h4l3-2v8l-3-2h-4" />
+        <path d="M6 15l1 4h3l-1-3" />
+      </svg>
+    ),
+  },
 ]
 
 export function LandingPage() {
@@ -280,13 +336,23 @@ export function LandingPage() {
           </div>
 
           <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {featuredModules.slice(0, 4).map((m, index) => (
+            {featuredModules.slice(0, 4).map((m, index) => {
+              const visual = featureVisuals[index % featureVisuals.length]
+              return (
               <article key={m.id} className="fc-feature-card fc-reveal" style={{ transitionDelay: `${index * 80}ms` }}>
-                <div className="fc-feature-number">{index + 1}</div>
+                <div className="flex items-start justify-between gap-3">
+                  <div className={`inline-flex h-12 w-12 items-center justify-center rounded-xl ${visual.toneClass}`}>
+                    {visual.icon}
+                  </div>
+                  <div className="fc-feature-number">{index + 1}</div>
+                </div>
+                <div className="mt-4 text-xs font-semibold uppercase tracking-[0.08em] text-slate-500">
+                  {visual.tag}
+                </div>
                 <h3 className="mt-4 text-lg font-bold text-slate-900">{m.titulo.replace(/^M[ÓO]DULO\s+\d+\s+—\s+/i, '')}</h3>
                 <p className="mt-2 text-sm text-slate-600">{m.subtitulo}</p>
               </article>
-            ))}
+            )})}
           </div>
 
           <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:items-center">
@@ -447,11 +513,11 @@ export function LandingPage() {
           <div className="text-center">
             <div className="fc-badge">Agenda Semanal</div>
             <h2 className="mt-4 text-3xl font-bold text-slate-900 sm:text-4xl">
-              Horario de Clases en Vivo
+              Horario de Sesiones en Vivo
             </h2>
             <p className="mx-auto mt-3 max-w-3xl text-slate-600">
-              Clases todos los dias de la semana con horarios flexibles para que nunca te pierdas una
-              sesion.
+              Sesiones todas las semanas con horarios flexibles para que avances en compra,
+              venta, negociacion y escala de tu negocio automotriz.
             </p>
           </div>
 

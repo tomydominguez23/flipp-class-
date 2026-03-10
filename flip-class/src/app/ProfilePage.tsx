@@ -15,8 +15,8 @@ export function ProfilePage() {
 
   if (!user) {
     return (
-      <div className="fc-card p-6">
-        <div className="text-lg font-semibold">Sin sesión</div>
+      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="text-lg font-semibold text-slate-900">Sin sesión</div>
       </div>
     )
   }
@@ -33,28 +33,32 @@ function ProfileInner({ user }: { user: User }) {
 
   return (
     <div className="space-y-6">
-      <section className="fc-card p-6">
-        <h1 className="text-2xl font-bold">Perfil</h1>
-        <p className="mt-2 text-white/70">Edita tu nombre y tu plan (demo).</p>
+      <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <h1 className="text-2xl font-bold text-slate-900">Perfil</h1>
+        <p className="mt-2 text-slate-600">Edita tu nombre y tu plan (demo).</p>
 
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           <div>
-            <div className="text-xs text-white/60">Nombre</div>
-            <input className="fc-input mt-2" value={nombre} onChange={(e) => setNombre(e.target.value)} />
+            <div className="text-xs text-slate-500">Nombre</div>
+            <input className="fc-auth-input mt-2" value={nombre} onChange={(e) => setNombre(e.target.value)} />
           </div>
           <div>
-            <div className="text-xs text-white/60">Email</div>
-            <input className="fc-input mt-2" value={user.email} disabled />
+            <div className="text-xs text-slate-500">Email</div>
+            <input className="fc-auth-input mt-2" value={user.email} disabled />
           </div>
         </div>
 
         <div className="mt-6">
-          <div className="text-xs text-white/60">Plan</div>
+          <div className="text-xs text-slate-500">Plan</div>
           <div className="mt-3 grid gap-3 md:grid-cols-3">
             {plans.map((p) => (
               <button
                 key={p.id}
-                className={plan === p.id ? 'fc-btn-primary w-full' : 'fc-btn-secondary w-full'}
+                className={
+                  plan === p.id
+                    ? 'fc-btn-primary w-full'
+                    : 'fc-btn-secondary w-full !border-slate-300 !bg-white !text-slate-700'
+                }
                 onClick={() => setPlan(p.id)}
                 type="button"
               >
@@ -66,12 +70,12 @@ function ProfileInner({ user }: { user: User }) {
             ))}
           </div>
           {currentPlan ? (
-            <div className="mt-3 text-sm text-white/70">Seleccionado: {currentPlan.name}</div>
+            <div className="mt-3 text-sm text-slate-600">Seleccionado: {currentPlan.name}</div>
           ) : null}
         </div>
 
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-end">
-          {msg ? <div className="text-sm text-white/70 sm:mr-auto">{msg}</div> : null}
+          {msg ? <div className="text-sm text-slate-600 sm:mr-auto">{msg}</div> : null}
           <button
             className="fc-btn-primary"
             onClick={() => {

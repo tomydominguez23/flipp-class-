@@ -56,3 +56,20 @@ export type CommunityState = {
   posts: CommunityPost[]
 }
 
+export type LessonComment = {
+  id: string
+  authorName: string
+  createdAt: string
+  body: string
+  likes: number
+  replies: LessonReply[]
+}
+
+export type LessonReply = {
+  id: string
+  authorName: string
+  createdAt: string
+  body: string
+  likes: number
+}
+

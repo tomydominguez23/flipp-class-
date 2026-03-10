@@ -15,18 +15,18 @@ function modulePct(moduleId: string, lessonIds: string[]) {
 function moduleTone(index: number) {
   const tones = [
     {
-      cover: 'from-emerald-700 to-emerald-500',
-      progress: 'bg-emerald-500',
-      button: 'bg-emerald-600 hover:bg-emerald-700',
-    },
-    {
-      cover: 'from-cyan-700 to-sky-500',
-      progress: 'bg-sky-500',
-      button: 'bg-sky-600 hover:bg-sky-700',
-    },
-    {
-      cover: 'from-amber-700 to-amber-500',
+      cover: 'from-zinc-900 to-zinc-700',
       progress: 'bg-amber-500',
+      button: 'bg-slate-900 hover:bg-slate-800',
+    },
+    {
+      cover: 'from-slate-800 to-indigo-700',
+      progress: 'bg-violet-500',
+      button: 'bg-indigo-700 hover:bg-indigo-800',
+    },
+    {
+      cover: 'from-amber-700 to-orange-500',
+      progress: 'bg-orange-500',
       button: 'bg-amber-500 hover:bg-amber-600 text-slate-900',
     },
   ]
@@ -64,19 +64,19 @@ export function CourseIndex() {
 
   return (
     <div className="space-y-6">
-      <section className="fc-card p-6">
+      <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
         <div className="text-center">
-          <div className="mx-auto inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white/70">
-            Contenido premium
+          <div className="mx-auto inline-flex rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-amber-700">
+            Ruta de estudio
           </div>
-          <h1 className="mt-3 text-3xl font-extrabold">Nuestros Módulos</h1>
-          <p className="mx-auto mt-2 max-w-2xl text-sm text-white/70">
-            Accede a todo el contenido del curso y avanza paso a paso. Tu progreso queda guardado
-            automáticamente.
+          <h1 className="mt-3 text-3xl font-extrabold text-slate-900">Programa completo FLIP CLASS</h1>
+          <p className="mx-auto mt-2 max-w-2xl text-sm text-slate-600">
+            Avanza módulo por módulo y marca cada lección completada. Todo queda guardado
+            automáticamente en tu progreso.
           </p>
         </div>
         <div className="mx-auto mt-6 max-w-xl">
-          <div className="flex items-center justify-between text-xs text-white/60">
+          <div className="flex items-center justify-between text-xs text-slate-500">
             <span>
               Progreso total: {overall.completed}/{overall.totalLessons}
             </span>
