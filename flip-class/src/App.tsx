@@ -6,6 +6,7 @@ import { LoginPage } from './pages/LoginPage'
 import { PlansPage } from './pages/PlansPage'
 import { RegisterPage } from './pages/RegisterPage'
 import { LandingPage } from './pages/LandingPage'
+import { CalendarPage } from './pages/CalendarPage'
 import { DashboardHome } from './app/DashboardHome'
 import { CourseIndex } from './app/CourseIndex'
 import { LessonPage } from './app/LessonPage'
@@ -19,6 +20,7 @@ function App() {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/planes" element={<PlansPage />} />
+      <Route path="/calendario" element={<CalendarPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/registro" element={<RegisterPage />} />
 

@@ -58,10 +58,11 @@
 
 @layer components {
   .fc-landing-bg {
+    color: rgb(15 23 42);
     background:
-      radial-gradient(1200px 520px at 100% -20%, rgba(16, 185, 129, 0.17), transparent 60%),
-      radial-gradient(900px 430px at 0% -5%, rgba(14, 165, 233, 0.15), transparent 55%),
-      rgb(var(--fc-bg));
+      radial-gradient(1200px 520px at 100% -20%, rgba(180, 141, 78, 0.17), transparent 60%),
+      radial-gradient(900px 430px at 0% -5%, rgba(138, 115, 88, 0.11), transparent 55%),
+      #fff;
   }
 
   .fc-landing-hero {
@@ -71,19 +72,19 @@
   }
 
   .fc-stat-card {
-    @apply rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur;
+    @apply rounded-2xl border border-[#ece7de] bg-white p-4 shadow-sm;
   }
 
   .fc-stat-number {
-    @apply block text-2xl font-extrabold text-emerald-300;
+    @apply block text-2xl font-extrabold text-amber-700;
   }
 
   .fc-stat-label {
-    @apply mt-1 block text-xs text-white/65;
+    @apply mt-1 block text-xs text-slate-500;
   }
 
   .fc-hero-panel {
-    @apply rounded-3xl border border-white/10 bg-white/10 p-5 shadow-2xl backdrop-blur-xl;
+    @apply rounded-3xl border border-[#eae3d8] bg-white/95 p-5 shadow-xl;
   }
 
   .fc-chart-bars {
@@ -103,25 +104,25 @@
   }
 
   .fc-chart-bar.is-positive {
-    background: linear-gradient(to top, rgba(16, 185, 129, 0.35), rgb(52, 211, 153));
+    background: linear-gradient(to top, rgba(217, 119, 6, 0.3), rgb(245, 158, 11));
   }
 
   .fc-chart-bar.is-negative {
-    background: linear-gradient(to top, rgba(239, 68, 68, 0.3), rgb(248, 113, 113));
+    background: linear-gradient(to top, rgba(168, 85, 247, 0.3), rgb(139, 92, 246));
   }
 
   .fc-feature-card {
-    @apply rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur transition-all duration-300;
+    @apply rounded-2xl border border-[#ece6dc] bg-white p-6 transition-all duration-300;
   }
 
   .fc-feature-card:hover {
     transform: translateY(-6px);
-    border-color: rgba(52, 211, 153, 0.4);
-    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.28);
+    border-color: rgba(180, 141, 78, 0.5);
+    box-shadow: 0 16px 35px rgba(15, 23, 42, 0.12);
   }
 
   .fc-feature-number {
-    @apply inline-flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 to-sky-500 text-sm font-bold text-slate-900;
+    @apply inline-flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-zinc-900 to-amber-600 text-sm font-bold text-white;
   }
 
   .fc-module-card {
@@ -131,27 +132,27 @@
   .fc-module-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 18px 35px rgba(2, 6, 23, 0.2);
-    border-color: rgba(16, 185, 129, 0.45);
+    border-color: rgba(180, 141, 78, 0.48);
   }
 
   .fc-counter-section {
-    background: linear-gradient(145deg, rgba(2, 6, 23, 0.92), rgba(15, 23, 42, 0.92));
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(145deg, rgba(249, 247, 243, 0.95), rgba(244, 239, 230, 0.95));
+    border-top: 1px solid rgba(188, 174, 151, 0.35);
+    border-bottom: 1px solid rgba(188, 174, 151, 0.35);
   }
 
   .fc-counter-number {
-    @apply text-4xl font-extrabold text-emerald-300;
+    @apply text-4xl font-extrabold text-slate-900;
   }
 
   .fc-counter-label {
-    @apply mt-1 text-sm text-white/65;
+    @apply mt-1 text-sm text-slate-600;
   }
 
   .fc-cta-section {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, rgba(6, 78, 59, 0.55), rgba(3, 105, 161, 0.5));
+    background: linear-gradient(135deg, #0f172a, #312e81);
   }
 
   .fc-cta-section::before {
@@ -161,8 +162,404 @@
     height: 460px;
     right: -180px;
     top: -190px;
-    background: radial-gradient(circle, rgba(52, 211, 153, 0.26), transparent 70%);
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.24), transparent 70%);
     pointer-events: none;
+  }
+
+  .fc-landing-bg .fc-badge {
+    @apply border-[#e9e2d6] bg-[#fbf9f5] text-slate-700;
+  }
+
+  .fc-landing-bg .fc-card {
+    @apply border-[#ece6dc] bg-white;
+  }
+
+  .fc-landing-bg .fc-btn-primary {
+    @apply bg-gradient-to-r from-zinc-900 to-zinc-700 text-white hover:opacity-95;
+  }
+
+  .fc-landing-bg .fc-btn-secondary {
+    @apply border-[#d7c8b2] bg-white text-slate-700 hover:bg-[#faf7f2];
+  }
+
+  .fc-auth-shell {
+    min-height: 100vh;
+    background: #f8fafc;
+    color: #0f172a;
+  }
+
+  .fc-auth-grid {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.08fr 1fr;
+  }
+
+  .fc-auth-brand {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1f5f66 0%, #2d7c79 55%, #57b6a6 100%);
+  }
+
+  .fc-auth-brand::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.24;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+  }
+
+  .fc-auth-brand-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 84px 56px;
+    text-align: center;
+  }
+
+  .fc-auth-chip {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.92);
+    padding: 0.52rem 0.95rem;
+    border-radius: 0.85rem;
+    font-size: 0.86rem;
+    font-weight: 600;
+    backdrop-filter: blur(6px);
+  }
+
+  .fc-auth-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 44px 32px;
+    background: #fff;
+  }
+
+  .fc-auth-label {
+    display: block;
+    color: #64748b;
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+
+  .fc-auth-input {
+    width: 100%;
+    border: 1px solid #dbe3ec;
+    background: #f3f6f9;
+    border-radius: 0.6rem;
+    padding: 0.78rem 0.9rem;
+    color: #0f172a;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .fc-auth-input::placeholder {
+    color: #94a3b8;
+  }
+
+  .fc-auth-input:focus {
+    border-color: #2d7c79;
+    box-shadow: 0 0 0 3px rgba(45, 124, 121, 0.14);
+  }
+
+  .fc-auth-submit {
+    border: 0;
+    border-radius: 0.65rem;
+    padding: 0.82rem 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #1f5f66, #2d7c79);
+    transition: filter 0.2s ease, transform 0.2s ease;
+  }
+
+  .fc-auth-submit:hover {
+    filter: brightness(1.04);
+    transform: translateY(-1px);
+  }
+
+  .fc-auth-social {
+    border: 1px solid #c7d3df;
+    border-radius: 0.65rem;
+    background: #fff;
+    color: #334155;
+    font-weight: 700;
+    font-size: 0.93rem;
+    padding: 0.72rem 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .fc-auth-social:hover {
+    border-color: #94a3b8;
+    background: #f8fafc;
+  }
+
+  @media (max-width: 1024px) {
+    .fc-auth-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .fc-auth-brand-inner {
+      padding: 48px 26px;
+    }
+
+    .fc-auth-brand-inner h1 {
+      font-size: 2.3rem;
+    }
+
+    .fc-auth-brand-inner .text-5xl {
+      font-size: 2rem;
+    }
+  }
+
+  .fc-schedule-card {
+    @apply flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300;
+  }
+
+  .fc-schedule-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.09);
+  }
+
+  .fc-schedule-card.is-active {
+    border-color: rgba(59, 130, 246, 0.45);
+    box-shadow: 0 10px 26px rgba(59, 130, 246, 0.12);
+  }
+
+  .fc-schedule-icon {
+    @apply flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl text-sm font-extrabold;
+  }
+
+  .fc-calendar-page {
+    background: #f3f5f9;
+  }
+
+  .fc-calendar-topbar {
+    @apply border-b border-slate-200 bg-white/90 backdrop-blur;
+  }
+
+  .fc-calendar-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  }
+
+  .fc-calendar-quick {
+    border-left: 4px solid #cbd5e1;
+    @apply rounded-2xl border border-slate-200 bg-white p-5 shadow-sm;
+  }
+
+  .fc-calendar-shell {
+    @apply overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm;
+  }
+
+  .fc-calendar-shell-header {
+    @apply flex flex-col gap-3 border-b border-slate-200 p-5 sm:flex-row sm:items-center sm:justify-between;
+  }
+
+  .fc-calendar-nav-btn {
+    @apply rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50;
+  }
+
+  .fc-calendar-nav-btn.is-today {
+    @apply border-slate-900 bg-slate-900 text-white hover:bg-slate-800;
+  }
+
+  .fc-calendar-legend {
+    @apply flex flex-wrap items-center gap-4 border-b border-slate-200 px-5 py-3;
+  }
+
+  .fc-calendar-legend-item {
+    @apply inline-flex items-center gap-2 text-xs font-medium text-slate-600;
+  }
+
+  .fc-calendar-dot {
+    @apply h-3 w-3 rounded;
+  }
+
+  .fc-calendar-grid-head {
+    @apply grid grid-cols-7 border-b border-slate-200;
+  }
+
+  .fc-calendar-day-head {
+    @apply px-2 py-3 text-center text-xs font-bold tracking-wide text-slate-500;
+  }
+
+  .fc-calendar-grid-days {
+    @apply grid grid-cols-7;
+  }
+
+  .fc-calendar-day {
+    min-height: 140px;
+    border-right: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 0.4rem;
+    background: #fff;
+  }
+
+  .fc-calendar-day:nth-child(7n) {
+    border-right: none;
+  }
+
+  .fc-calendar-day.is-empty {
+    background: #f8fafc;
+  }
+
+  .fc-calendar-day.is-today {
+    background: #fffbeb;
+  }
+
+  .fc-calendar-day-number {
+    @apply mb-2 text-xs font-bold text-slate-700;
+  }
+
+  .fc-calendar-event {
+    @apply mb-1 truncate rounded-md px-1.5 py-1 text-[10px] font-semibold;
+  }
+
+  .fc-upcoming-item {
+    @apply flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-4 transition-all duration-300 hover:border-slate-300 hover:shadow-md;
+  }
+
+  .fc-upcoming-icon {
+    @apply flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl text-sm font-extrabold;
+  }
+
+  .fc-upcoming-tag {
+    @apply rounded-full px-3 py-1 text-xs font-semibold;
+  }
+
+  .fc-schedule-icon.fc-tone-mentor,
+  .fc-upcoming-icon.fc-tone-mentor,
+  .fc-calendar-dot.fc-tone-mentor,
+  .fc-calendar-event.fc-tone-mentor,
+  .fc-upcoming-tag.fc-tone-mentor,
+  .fc-calendar-quick.fc-tone-mentor {
+    background: rgba(59, 130, 246, 0.12);
+    color: #2563eb;
+  }
+
+  .fc-schedule-icon.fc-tone-premarket,
+  .fc-upcoming-icon.fc-tone-premarket,
+  .fc-calendar-dot.fc-tone-premarket,
+  .fc-calendar-event.fc-tone-premarket,
+  .fc-upcoming-tag.fc-tone-premarket,
+  .fc-calendar-quick.fc-tone-premarket {
+    background: rgba(16, 185, 129, 0.12);
+    color: #059669;
+  }
+
+  .fc-schedule-icon.fc-tone-europa,
+  .fc-upcoming-icon.fc-tone-europa,
+  .fc-calendar-dot.fc-tone-europa,
+  .fc-calendar-event.fc-tone-europa,
+  .fc-upcoming-tag.fc-tone-europa,
+  .fc-calendar-quick.fc-tone-europa {
+    background: rgba(236, 72, 153, 0.12);
+    color: #db2777;
+  }
+
+  .fc-schedule-icon.fc-tone-post,
+  .fc-upcoming-icon.fc-tone-post,
+  .fc-calendar-dot.fc-tone-post,
+  .fc-calendar-event.fc-tone-post,
+  .fc-upcoming-tag.fc-tone-post,
+  .fc-calendar-quick.fc-tone-post {
+    background: rgba(139, 92, 246, 0.12);
+    color: #7c3aed;
+  }
+
+  .fc-schedule-icon.fc-tone-tc2000,
+  .fc-upcoming-icon.fc-tone-tc2000,
+  .fc-calendar-dot.fc-tone-tc2000,
+  .fc-calendar-event.fc-tone-tc2000,
+  .fc-upcoming-tag.fc-tone-tc2000,
+  .fc-calendar-quick.fc-tone-tc2000 {
+    background: rgba(217, 119, 6, 0.12);
+    color: #b45309;
+  }
+
+  .fc-schedule-icon.fc-tone-sabados,
+  .fc-upcoming-icon.fc-tone-sabados,
+  .fc-calendar-dot.fc-tone-sabados,
+  .fc-calendar-event.fc-tone-sabados,
+  .fc-upcoming-tag.fc-tone-sabados,
+  .fc-calendar-quick.fc-tone-sabados {
+    background: rgba(239, 68, 68, 0.12);
+    color: #dc2626;
+  }
+
+  .fc-schedule-icon.fc-tone-especial,
+  .fc-upcoming-icon.fc-tone-especial,
+  .fc-calendar-dot.fc-tone-especial,
+  .fc-calendar-event.fc-tone-especial,
+  .fc-upcoming-tag.fc-tone-especial,
+  .fc-calendar-quick.fc-tone-especial {
+    background: rgba(234, 179, 8, 0.14);
+    color: #a16207;
+  }
+
+  .fc-calendar-quick.fc-tone-mentor,
+  .fc-calendar-quick.fc-tone-premarket,
+  .fc-calendar-quick.fc-tone-europa,
+  .fc-calendar-quick.fc-tone-post,
+  .fc-calendar-quick.fc-tone-tc2000,
+  .fc-calendar-quick.fc-tone-sabados,
+  .fc-calendar-quick.fc-tone-especial {
+    border-left-width: 4px;
+  }
+
+  .fc-calendar-quick.fc-tone-mentor {
+    border-left-color: #2563eb;
+  }
+
+  .fc-calendar-quick.fc-tone-premarket {
+    border-left-color: #059669;
+  }
+
+  .fc-calendar-quick.fc-tone-europa {
+    border-left-color: #db2777;
+  }
+
+  .fc-calendar-quick.fc-tone-post {
+    border-left-color: #7c3aed;
+  }
+
+  .fc-calendar-quick.fc-tone-tc2000 {
+    border-left-color: #b45309;
+  }
+
+  .fc-calendar-quick.fc-tone-sabados {
+    border-left-color: #dc2626;
+  }
+
+  .fc-calendar-quick.fc-tone-especial {
+    border-left-color: #a16207;
+  }
+
+  @media (max-width: 1024px) {
+    .fc-calendar-grid-days {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .fc-calendar-grid-head {
+      display: none;
+    }
+
+    .fc-calendar-day {
+      border-right: none;
+      min-height: 120px;
+    }
+
+    .fc-calendar-day-number {
+      font-size: 0.82rem;
+    }
   }
 
   .fc-reveal {
